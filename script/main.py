@@ -46,3 +46,8 @@ if __name__ == '__ main __' :
         -texte cliquable
         -(visuel de l'avancement dans l'histoire ?)
 """
+"""
+    (Sauvegarde ?)
+        description:
+            copie "Aventure" dans un fichier .txt/jason pour reprendre les informations
+"""
