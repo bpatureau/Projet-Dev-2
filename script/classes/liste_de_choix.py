@@ -1,8 +1,7 @@
 class ListeDeChoix:
-    def __init__(self, nom):
-        self.nom = nom
-    def __str__(self):
-        return f"Bienvenu dans la liste de choix {self.nom}"
+    """Classe représentant un node de l'histoire avec ses choix"""
     
-listeDeChoixTest = ListeDeChoix("Piège")
-print(listeDeChoixTest)
+    def __init__(self, id_node, description):
+        self.id = id_node
+        self.description = description
+        self.propositions = []
