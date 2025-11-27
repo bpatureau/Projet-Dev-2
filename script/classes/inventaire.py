@@ -1,4 +1,6 @@
 class Inventaire:
+    argent=0
+    objets=[]
     def __init__(self, nom):
         self.nom = nom
     def __str__(self):
