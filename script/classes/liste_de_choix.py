@@ -3,7 +3,7 @@ class ListeDeChoix:
     
     def __init__(self, id_node, description):
         self.id = id_node
-        self.description = description
+        self.__description = description
         self.propositions = []
     
     def ajouter_proposition(self, texte: str, consequence: str, 
@@ -62,11 +62,16 @@ class ListeDeChoix:
         
         return True
     
+    @property
+    def description(self):
+        description = f"\n{'#'*60}\n"
+        description += f"{self.__description}\n"
+        description += f"{'#'*60}\n\n"
+        return description
+    
     def afficher(self, hero, affinites):
         """Retourne l'affichage du node avec les choix disponibles"""
-        affichage = f"\n{'#'*60}\n"
-        affichage += f"{self.description}\n"
-        affichage += f"{'#'*60}\n\n"
+        affichage = f"{self.description}\n"
         
         propositions_dispo = self.obtenir_propositions_disponibles(hero, affinites)
         
@@ -84,7 +89,7 @@ class ListeDeChoix:
         
         return affichage
     
-"""  # --- Classes factices pour tester ---
+ # --- Classes factices pour tester ---
 
 class InventaireTest:
     def __init__(self, objets=None, or_=0):
@@ -158,5 +163,5 @@ for p in props:
     print("-", p["texte"])
 
 print("\n=== AFFICHAGE ===")
-print(node.afficher(hero, affinites)) """
+print(node.afficher(hero, affinites))
 
