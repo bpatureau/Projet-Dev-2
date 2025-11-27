@@ -62,5 +62,101 @@ class ListeDeChoix:
         
         return True
     
+    def afficher(self, hero, affinites):
+        """Retourne l'affichage du node avec les choix disponibles"""
+        affichage = f"\n{'#'*60}\n"
+        affichage += f"{self.description}\n"
+        affichage += f"{'#'*60}\n\n"
+        
+        propositions_dispo = self.obtenir_propositions_disponibles(hero, affinites)
+        
+        if not propositions_dispo:
+            affichage += "Aucun choix disponible...\n"
+            return affichage
+        
+        affichage += "Que voulez-vous faire?\n"
+        affichage += "-" * 50 + "\n"
+        
+        for i, prop in enumerate(propositions_dispo, 1):
+            affichage += f"{i}. {prop['texte']}\n"
+        
+        affichage += "-" * 50 + "\n"
+        
+        return affichage
+    
+"""  # --- Classes factices pour tester ---
 
+class InventaireTest:
+    def __init__(self, objets=None, or_=0):
+        self.objets = objets or []
+        self.or_ = or_
+    
+    def contient(self, objet):
+        return objet in self.objets
+
+
+class HeroTest:
+    def __init__(self, objets=None, or_=0, caracteristiques=None):
+        self.inventaire = InventaireTest(objets, or_)
+        self.caracteristiques = caracteristiques or {}
+
+
+# --- Création d'un node pour les tests ---
+
+node = ListeDeChoix(1, "Vous êtes devant une porte mystérieuse.")
+
+
+# --- Ajout de propositions variées ---
+
+node.ajouter_proposition(
+    texte="Ouvrir la porte",
+    consequence="La porte s'ouvre.",
+    prerequis=None
+)
+
+node.ajouter_proposition(
+    texte="Forcer la porte",
+    consequence="Vous forcez la porte.",
+    prerequis={"caracteristique": "force", "valeur_min": 5}
+)
+
+node.ajouter_proposition(
+    texte="Utiliser la clé en argent",
+    consequence="La clé ouvre la porte.",
+    prerequis={"objet": "clé en argent"}
+)
+
+node.ajouter_proposition(
+    texte="Soudoyer le garde",
+    consequence="Le garde vous laisse passer.",
+    prerequis={"pnj": "gardien", "affinite_min": 3}
+)
+
+node.ajouter_proposition(
+    texte="Payer le garde",
+    consequence="Vous payez le garde.",
+    prerequis={"or_min": 10}
+)
+
+
+# --- Définition d'un héros test ---
+
+hero = HeroTest(
+    objets=["clé en argent"],
+    or_=12,
+    caracteristiques={"force": 4}
+)
+
+affinites = {"gardien": 2}
+
+
+# --- Tests ---
+
+print("\n=== PROPOSITIONS DISPONIBLES ===")
+props = node.obtenir_propositions_disponibles(hero, affinites)
+for p in props:
+    print("-", p["texte"])
+
+print("\n=== AFFICHAGE ===")
+print(node.afficher(hero, affinites)) """
 
