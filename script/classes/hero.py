@@ -1,18 +1,8 @@
 #Ensemble des variables globales
 listeClasse = ["Inspecteur", "Commissaire", "Détective"]
 listeHero = {}
-
-# --------------------------------------------
-# Fonction de création de perso Hero
-def creationhero():
-    nom = input("Entrez votre nom: ")
-    classe = choixclassehero()
-    listeHero[nom] = Hero(nom, classe)
-
-    return listeHero[nom]
-
 #--------------------------------------------
-# Fonction de choix de classe de départ de l'instance de Hero
+# Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
 def choixclassehero():
     choix = input("Entrez votre choix parmi \033[3mInspecteur\033[3m (a), \033[3mCommissaire\033[3m (b) et \033[3mDétective\033[3m (c): ")
     if choix == "a":
@@ -23,7 +13,13 @@ def choixclassehero():
         return listeClasse[2]
     else:
         return choixclassehero()
-
+# --------------------------------------------
+# Fonction de création de perso Hero par un input pour le nom du hero
+def creationhero():
+    nom = input("Entrez votre nom: ")
+    classe = choixclassehero()
+    listeHero[nom] = Hero(nom, classe)
+    return listeHero[nom]
 #--------------------------------------------
 """
 Personage
@@ -33,8 +29,7 @@ Personage
         Variable :
             - nom
             - competence (force, charisme, intelligence et agilité), en fonction de la classe
-            - inventaire
-            
+            - inventaire           
 """
 class Hero:
     def __init__(self, nom :str , classe : str ):
@@ -46,13 +41,10 @@ class Hero:
             self.competence = {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
         else: # Détective
             self.competence = {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
-
         # self.inventaire = appel inventaire.py et lier à instance d'inventaire
-
     def __str__(self):
         return f"\033[3m{self.nom}\033[3m est un \033[3m{self.classe}\033[3m personage et à {self.competence['force']} de force"
 # --------------------------------------------
 #TEST
 #michel = creationhero()
 #print(michel)
-#--------------------------------------------
