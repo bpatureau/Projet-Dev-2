@@ -20,3 +20,13 @@ class ListeDeChoix:
         }
         self.propositions.append(proposition)
     
+    def obtenir_propositions_disponibles(self, hero, affinites):
+        """Retourne la liste des propositions disponibles selon les prérequis"""
+        disponibles = []
+        
+        for prop in self.propositions:
+            if self._verifier_prerequis(prop["prerequis"], hero, affinites):
+                disponibles.append(prop)
+        
+        return disponibles
+    
