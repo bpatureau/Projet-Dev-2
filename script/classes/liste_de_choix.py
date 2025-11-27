@@ -89,7 +89,7 @@ class ListeDeChoix:
         
         return affichage
     
- # --- Classes factices pour tester ---
+""" # --- Classes factices pour tester ---
 
 class InventaireTest:
     def __init__(self, objets=None, or_=0):
@@ -163,5 +163,5 @@ for p in props:
     print("-", p["texte"])
 
 print("\n=== AFFICHAGE ===")
-print(node.afficher(hero, affinites))
+print(node.afficher(hero, affinites)) """
 
