@@ -1,3 +1,5 @@
+from classes import Aventure, Hero, Inventaire, ListeDeChoix
+
 if __name__ == '__ main __' :
     print('Hello World')
 """
@@ -48,6 +50,7 @@ if __name__ == '__ main __' :
 """
 """
     (Sauvegarde ?)
+"""
         description:
             copie "Aventure" dans un fichier .txt/jason pour reprendre les informations
 """
