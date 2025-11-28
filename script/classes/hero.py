@@ -1,6 +1,6 @@
 #Ensemble des variables globales
 listeClasse = ["Inspecteur", "Commissaire", "Détective"]
-listeHero = {}
+nomhero = {}
 #--------------------------------------------
 # Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
 def choixclassehero():
@@ -18,8 +18,8 @@ def choixclassehero():
 def creationhero():
     nom = input("Entrez votre nom: ")
     classe = choixclassehero()
-    listeHero[nom] = Hero(nom, classe)
-    return listeHero[nom]
+    nomhero[nom] = Hero(nom, classe)
+    return nomhero[nom]
 #--------------------------------------------
 """
 Personage
@@ -44,6 +44,7 @@ class Hero:
         # self.inventaire = appel inventaire.py et lier à instance d'inventaire
     def __str__(self):
         return f"\033[3m{self.nom}\033[3m est un \033[3m{self.classe}\033[3m personage et à {self.competence['force']} de force"
+
 # --------------------------------------------
 #TEST
 #michel = creationhero()
