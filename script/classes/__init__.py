@@ -1,8 +1,6 @@
-#import de classe
-from .aventure import Aventure
-from .hero import  listeHero, creationhero, Hero
-
 from .inventaire import Inventaire
+from .hero import  nomhero, creationhero, Hero
 from .liste_de_choix import ListeDeChoix
-# import de fonction
-from ..utilitaires.utilitairehero import all
+from .aventure import Aventure
+# import d'utilitaire
+from ..utilitaires import utilitairehero
