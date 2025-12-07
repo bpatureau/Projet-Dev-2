@@ -1,12 +1,12 @@
 class Inventaire:
-    argent=0
-    objets=[]
-    def __init__(self, nom):
-        self.nom = nom
+    def __init__(self):
+        self.argent = 0
+        self.objets = []
     def __str__(self):
-        return f"Je suis l'inventaire de {self.nom} et j'ai {self.argent} argent"
-    def getAgrent(self):
-        return argent
-
-inventaireTest = Inventaire("Conan")
-print(inventaireTest)
+        return (f"argent : {self.argent} \n"
+                f"objets : {self.objets}")
+    def getArgent(self):
+        return self.argent
+#-----------------------------------
+#inventaireTest = Inventaire()
+#print(inventaireTest)
