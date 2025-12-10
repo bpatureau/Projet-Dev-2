@@ -32,18 +32,30 @@ class Hero:
                 - competence (force, charisme, intelligence et agilité), en fonction de la classe
                 - inventaire
     """
-    def __init__(self, nom :str , classe : str ):
-        self.nom = nom
-        self.classe = classe
-        if classe == 'Inspecteur':
-            self.competence = {"force":0,"charisme":1,"intelligence":2, "agilité":1}
-        elif classe == 'Commissaire':
-            self.competence = {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
-        else: # Détective
-            self.competence = {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
-        # self.inventaire = appel inventaire.py et lier à instance d'inventaire
+    def __init__(self, nominit :str , classeinit : str ):
+        self._nom = nominit
+        self._classe = classeinit
+        if classeinit == 'Inspecteur':
+            self._competence = {"force": 0, "charisme": 1, "intelligence": 2, "agilité": 1}
+        elif classeinit == 'Commissaire':
+            self._competence = {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
+        else:  # Détective
+            self._competence = {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
+
+        #self.inventaire = appel inventaire.py et lier à instance d'inventaire
+
+    @property
+    def nom(self):
+        return self._nom
+    @property
+    def competence(self):
+        return self._competence
+    @property
+    def classe(self):
+        return self._classe
+
     def __str__(self):
-        return (f"nom : {self.nom} classe : {self.classe} \n"
+        return (f"nom : {self._nom} classe : {self._classe} \n"
                 f"force : {self.competence['force']} \n"
                 f"charisme : {self.competence['charisme']} \n"
                 f"intelligence : {self.competence['intelligence']} \n"
@@ -64,4 +76,3 @@ class Hero:
             self.competence[competence] += nbr
         else: #max(0, résultat)-> le plus grand des deux est prix entre 0 et le résultat du calcul, donc 0 est le min
             self.competence[competence] = max(0, self.competence[competence] - nbr)
-# --------------------------------------------
