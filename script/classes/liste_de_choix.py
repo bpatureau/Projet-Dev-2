@@ -69,6 +69,12 @@ class ListeDeChoix:
         description += f"{'#'*60}\n\n"
         return description
     
+    @description.setter
+    def description(self, value):
+        if not isinstance(value, str):
+            raise TypeError(f"La description doit être une chaîne de caractères (str), pas {type(value).__name__}")
+        self.__description = value
+
     def afficher(self, hero, affinites):
         """Retourne l'affichage du node avec les choix disponibles"""
         affichage = f"{self.description}\n"
