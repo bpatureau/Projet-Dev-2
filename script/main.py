@@ -1,3 +1,5 @@
+from classes import Aventure, Hero, Inventaire, ListeDeChoix
+
 if __name__ == '__ main __' :
     print('Hello World')
 """
