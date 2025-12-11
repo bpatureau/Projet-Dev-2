@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch
-from ..classes.hero import Hero, choixclassehero, creationhero, nomhero, listeClasse
+from ..classes.hero import Hero, choixclassehero, creationhero, nomhero
 
 class TestHero:
     """
@@ -13,63 +13,44 @@ class TestHero:
         """
         hero = Hero("Sherlock", "Inspecteur")
 
-        assert hero.nom == "Sherlock"
-        assert hero.classe == "Inspecteur"
-        assert hero.competence == {"force": 0, "charisme": 1, "intelligence": 2, "agilité": 1}
+        assert hero.getnom == "Sherlock"
+        assert hero.getclasse == "Inspecteur"
+        assert hero.getcompetence == {"force": 0, "charisme": 1, "intelligence": 2, "agilité": 1}
 
     def test_creation_hero_commissaire(self):
-        """
-        Test la création d'un héros Commissaire avec les bonnes compétences
-        """
         hero = Hero("Magret", "Commissaire")
 
-        assert hero.nom == "Magret" #coin coin commissaire
-        assert hero.classe == "Commissaire"
-        assert hero.competence == {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
+        assert hero.getnom == "Magret" #coin coin commissaire
+        assert hero.getclasse == "Commissaire"
+        assert hero.getcompetence == {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
 
     def test_creation_hero_detective(self):
-        """
-        Test la création d'un héros Détective avec les bonnes compétences
-        """
         hero = Hero("Poirot", "Détective")
 
-        assert hero.nom == "Poirot"
-        assert hero.classe == "Détective"
-        assert hero.competence == {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
+        assert hero.getnom == "Poirot"
+        assert hero.getclasse == "Détective"
+        assert hero.getcompetence == {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
 
     def test_modif_competence_augmentation(self):
-        """
-        Test l'augmentation d'une compétence
-        """
         hero = Hero("Holmes", "Inspecteur")
         hero.modifcompetence("force", "+", 3)
 
-        assert hero.competence["force"] == 3
+        assert hero.getcompetence["force"] == 3
 
     def test_modif_competence_diminution(self):
-        """
-        Test la diminution d'une compétence
-        """
         hero = Hero("Watson", "Commissaire")
         hero.modifcompetence("force", "-", 1)
 
-        assert hero.competence["force"] == 1  # 2 - 1 = 1
+        assert hero.getcompetence["force"] == 1  # 2 - 1 = 1
 
     def test_modif_competence_ne_descend_pas_sous_zero(self):
-        """
-        Test qu'une compétence ne peut pas descendre en dessous de 0
-        """
         hero = Hero("Lestrade", "Inspecteur")
         hero.modifcompetence("force", "-", 10)
 
-        assert hero.competence["force"] == 0  # Ne peut pas être négatif
+        assert hero.getcompetence["force"] == 0  # Ne peut pas être négatif
 
 
 class TestChoixClasseHero:
-    """
-    Tests de la fonction choixclassehero
-    """
-
     @patch('classes.hero.input', return_value='a')
     def test_choix_classe_inspecteur(self, mock_input):
         classe = choixclassehero()
@@ -94,12 +75,9 @@ class TestChoixClasseHero:
 
 
 class TestCreationHero:
-    """Tests de la fonction creationhero"""
-
     @patch('classes.hero.input', return_value='Columbo')
     @patch('classes.hero.choixclassehero', return_value='Détective')
     def test_creation_hero_fonction(self, mock_choix, mock_input):
-        """Test que creationhero crée bien un héros et l'ajoute au dictionnaire"""
         nomhero.clear()  # Nettoyer avant le test
 
         hero = creationhero()
@@ -112,7 +90,6 @@ class TestCreationHero:
     @patch('classes.hero.input', return_value='Morse')
     @patch('classes.hero.choixclassehero', return_value='Inspecteur')
     def test_creation_hero_retour_instance(self, mock_choix, mock_input):
-        """Test que creationhero retourne bien l'instance créée"""
         nomhero.clear()
 
         hero = creationhero()
