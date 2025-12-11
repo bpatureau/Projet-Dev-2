@@ -3,14 +3,7 @@ from unittest.mock import patch
 from ..classes.hero import Hero, choixclassehero, creationhero, nomhero
 
 class TestHero:
-    """
-    Tests de la classe Hero
-    """
-
     def test_creation_hero_inspecteur(self):
-        """
-        Test la création d'un héros Inspecteur avec les bonnes compétences
-        """
         hero = Hero("Sherlock", "Inspecteur")
 
         assert hero.getnom == "Sherlock"

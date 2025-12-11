@@ -1,5 +1,5 @@
 from .inventaire import Inventaire
-from .hero import  nomhero, creationhero, Hero
+from .hero import  Hero, choixclassehero, creationhero, nomhero
 from .liste_de_choix import ListeDeChoix
 from .aventure import Aventure
 # import d'utilitaire
