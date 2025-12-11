@@ -45,21 +45,21 @@ class Hero:
         #self.inventaire = appel inventaire.py et lier à instance d'inventaire
 
     @property
-    def nom(self):
+    def getnom(self):
         return self._nom
     @property
-    def competence(self):
+    def getcompetence(self):
         return self._competence
     @property
-    def classe(self):
+    def getclasse(self):
         return self._classe
 
     def __str__(self):
         return (f"nom : {self._nom} classe : {self._classe} \n"
-                f"force : {self.competence['force']} \n"
-                f"charisme : {self.competence['charisme']} \n"
-                f"intelligence : {self.competence['intelligence']} \n"
-                f"agilité : {self.competence['agilité']}")
+                f"force : {self._competence['force']} \n"
+                f"charisme : {self._competence['charisme']} \n"
+                f"intelligence : {self._competence['intelligence']} \n"
+                f"agilité : {self._competence['agilité']}")
 
     def modifcompetence(self, competence, signe, nbr):
         """
@@ -69,10 +69,10 @@ class Hero:
             signe : bollean # augmenter ("+") ou diminuer ("-") une competence
             nbr : int # de combien augmenter/diminuer
         """
-        if competence not in self.competence:
+        if competence not in self._competence:
             print(f"Erreur : La compétence '{competence}' n'existe pas.")
             return
         if signe == "+":
-            self.competence[competence] += nbr
+            self._competence[competence] += nbr
         else: #max(0, résultat)-> le plus grand des deux est prix entre 0 et le résultat du calcul, donc 0 est le min
-            self.competence[competence] = max(0, self.competence[competence] - nbr)
+            self._competence[competence] = max(0, self._competence[competence] - nbr)

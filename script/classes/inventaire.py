@@ -5,6 +5,7 @@ class Inventaire:
     def __str__(self):
         return (f"argent : {self.argent} \n"
                 f"objets : {self.objets}")
+    @property
     def getArgent(self):
         return self.argent
 #-----------------------------------
