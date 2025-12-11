@@ -6,7 +6,7 @@ class Inventaire:
         return (f"argent : {self.argent} \n"
                 f"objets : {self.objets}")
     @property
-    def getArgent(self):
+    def getargent(self):
         return self.argent
 #-----------------------------------
 #inventaireTest = Inventaire()
