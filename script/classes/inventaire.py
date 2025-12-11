@@ -1,6 +1,6 @@
 class Inventaire:
     def __init__(self):
-        self.argent = 0
+        self._argent = 0
         self.objets = []
 
     def __str__(self):
@@ -8,18 +8,20 @@ class Inventaire:
                 f"objets : {self.objets}")
 
     @property
-    def getArgent(self):
-        return self.argent
+    def argent(self):
+        return self._argent
 
+    @argent.setter
+    def argent(self, num):
+        self._argent = num
+
+"""
     def getObjets(self):
         out=""
         for objet in self.objets:
             out+=f"{objet}, "
         return out
 
-    def addArgent(self, num):
-        self.argent+=num
-        return self.argent
 
     def addObjets(self, obj):
         self.objets.append(obj)
@@ -27,3 +29,4 @@ class Inventaire:
 #-----------------------------------
 inventaireTest = Inventaire()
 print(inventaireTest)
+"""
