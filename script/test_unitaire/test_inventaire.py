@@ -14,4 +14,4 @@ class TestInventaire:
         inv.addArgent(5)
         inv.addObjets("obj2")
         assert inv.getArgent == 17
-        assert inv.getObjets() == "obj1 obj2"
+        assert inv.getObjets == "obj1 obj2"
