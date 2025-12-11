@@ -1,8 +1,5 @@
-from .hero import creationhero
-import re
-
-class pnjNonExistant(Exception):
-    pass
+from .liste_de_choix import *
+from .hero import *
 
 class Aventure:
     def __init__(self, nom:str, hero):
@@ -133,3 +130,7 @@ def creationAventure():
     hero = creationhero()
     aventure = Aventure(nomAventure, hero)
     return aventure
+
+# aventureTest = creationAventure()
+# aventureTest.createChoixActuel()
+# print(aventureTest)
