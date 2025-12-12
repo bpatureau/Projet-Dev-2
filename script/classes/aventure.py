@@ -1,5 +1,5 @@
-from liste_de_choix import *
-from hero import *
+from .liste_de_choix import *
+from .hero import *
 
 class Aventure:
     def __init__(self, nom:str, hero:Hero):
@@ -15,12 +15,12 @@ class Aventure:
     def get_PNJ(self):
         return self.pnjs
     
-def creationAventure():
-    nomAventure = input("Entrez le nom de votre aventure: ")
+def creationaventure():
+    nomaventure = input("Entrez le nom de votre aventure: ")
     hero = creationhero()
-    aventure = Aventure(nomAventure, hero)
+    aventure = Aventure(nomaventure, hero)
     return aventure
 
-aventureTest = creationAventure()   
-aventureTest.createChoixActuel()
-print(aventureTest)
+#aventureTest = creationaventure()
+#aventureTest.createChoixActuel()
+#print(aventureTest)

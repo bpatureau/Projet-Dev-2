@@ -1,6 +1,9 @@
+from script.classes.inventaire import Inventaire
+
 #Ensemble des variables globales
 listeClasse = ["Inspecteur", "Commissaire", "Détective"]
 nomhero = {}
+inventaireinit = Inventaire()
 #--------------------------------------------
 # Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
 def choixclassehero():
@@ -18,7 +21,7 @@ def choixclassehero():
 def creationhero():
     nom = input("Entrez votre nom: ")
     classe = choixclassehero()
-    nomhero[nom] = Hero(nom, classe)
+    nomhero[nom] = Hero(nom, classe, inventaireinit)
     return nomhero[nom]
 #--------------------------------------------
 class Hero:
@@ -32,7 +35,7 @@ class Hero:
                 - competence (force, charisme, intelligence et agilité), en fonction de la classe
                 - inventaire
     """
-    def __init__(self, nominit :str , classeinit : str ):
+    def __init__(self, nominit :str , classeinit : str, inventaireinit):
         self._nom = nominit
         self._classe = classeinit
         if classeinit == 'Inspecteur':
@@ -42,7 +45,7 @@ class Hero:
         else:  # Détective
             self._competence = {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
 
-        #self.inventaire = appel inventaire.py et lier à instance d'inventaire
+        self.inventaire = inventaireinit
 
     @property
     def getnom(self):
@@ -53,13 +56,17 @@ class Hero:
     @property
     def getclasse(self):
         return self._classe
+    @property
+    def get_inventaire(self):
+        return self.inventaire
 
     def __str__(self):
         return (f"nom : {self._nom} classe : {self._classe} \n"
                 f"force : {self._competence['force']} \n"
                 f"charisme : {self._competence['charisme']} \n"
                 f"intelligence : {self._competence['intelligence']} \n"
-                f"agilité : {self._competence['agilité']}")
+                f"agilité : {self._competence['agilité']}\n"
+                f"{self.inventaire}")
 
     def modifcompetence(self, competence, signe, nbr):
         """
