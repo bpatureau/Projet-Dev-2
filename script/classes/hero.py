@@ -43,7 +43,7 @@ class Hero:
         elif classeinit == 'Commissaire':
             self._competence = {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
         else:  # Détective
-            self._competence = {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
+            self._competence = {"force": 0, "charisme": 2, "intelligence": 2}
 
         self.inventaire = inventaireinit
 
@@ -60,14 +60,16 @@ class Hero:
     def get_inventaire(self):
         return self.inventaire
 
-    def __str__(self):
-        return (f"nom : {self._nom} classe : {self._classe} \n"
-                f"force : {self._competence['force']} \n"
-                f"charisme : {self._competence['charisme']} \n"
-                f"intelligence : {self._competence['intelligence']} \n"
-                f"agilité : {self._competence['agilité']}\n"
-                f"{self.inventaire}")
-
+    def afficher_info(self):
+        info = f"\n{'=' * 50}\n"
+        info += f"HÉROS: {self._nom}\n"
+        info += f"{'=' * 50}\n"
+        info += f"Force: {self._competence['force']} | "
+        info += f"Intelligence: {self._competence['intelligence']} | "
+        info += f"Charisme: {self._competence['charisme']}\n"
+        info += f"Or: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
+        info += f"{'=' * 50}\n"
+        return info
     def modifcompetence(self, competence, signe, nbr):
         """
         Fonction de modification de competence de personnage en donnant le nom du personnage
