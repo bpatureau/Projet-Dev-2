@@ -6,43 +6,43 @@ class TestHero:
     def test_creation_hero_inspecteur(self):
         hero = Hero("Sherlock", "Inspecteur", inventaireinit)
 
-        assert hero.getnom == "Sherlock"
-        assert hero.getclasse == "Inspecteur"
-        assert hero.getcompetence == {"force": 0, "charisme": 1, "intelligence": 2, "agilité": 1}
+        assert hero.get_nom == "Sherlock"
+        assert hero.get_classe == "Inspecteur"
+        assert hero.get_competence == {"force": 20, "charisme": 10, "intelligence": 10}
 
     def test_creation_hero_commissaire(self):
         hero = Hero("Magret", "Commissaire", inventaireinit)
 
-        assert hero.getnom == "Magret" #coin coin commissaire
-        assert hero.getclasse == "Commissaire"
-        assert hero.getcompetence == {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
+        assert hero.get_nom == "Magret" #coin coin commissaire
+        assert hero.get_classe == "Commissaire"
+        assert hero.get_competence == {"force": 10, "charisme": 20, "intelligence": 10}
 
     def test_creation_hero_detective(self):
         hero = Hero("Poirot", "Détective", inventaireinit)
 
-        assert hero.getnom == "Poirot"
-        assert hero.getclasse == "Détective"
-        assert hero.getcompetence == {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
+        assert hero.get_nom == "Poirot"
+        assert hero.get_classe == "Détective"
+        assert hero.get_competence == {"force": 10, "charisme": 10, "intelligence": 20}
 
+    # --------------------------------------------
     def test_modif_competence_augmentation(self):
         hero = Hero("Holmes", "Inspecteur", inventaireinit)
-        hero.modifcompetence("force", "+", 3)
+        hero.modif_competence("force", "+", 3)
 
-        assert hero.getcompetence["force"] == 3
+        assert hero.get_competence["force"] == 23
 
     def test_modif_competence_diminution(self):
         hero = Hero("Watson", "Commissaire", inventaireinit)
-        hero.modifcompetence("force", "-", 1)
+        hero.modif_competence("force", "-", 1)
 
-        assert hero.getcompetence["force"] == 1  # 2 - 1 = 1
+        assert hero.get_competence["force"] == 19  # 20 - 1 = 19
 
     def test_modif_competence_ne_descend_pas_sous_zero(self):
         hero = Hero("Lestrade", "Inspecteur", inventaireinit)
-        hero.modifcompetence("force", "-", 10)
+        hero.modif_competence("force", "-", 15)
 
-        assert hero.getcompetence["force"] == 0  # Ne peut pas être négatif
-
-
+        assert hero.get_competence["force"] == 0  # Ne peut pas être négatif
+#--------------------------------------------
 class TestChoixClasseHero:
     @patch('script.classes.hero.input', return_value='a')
     def test_choix_classe_inspecteur(self, mock_input):
