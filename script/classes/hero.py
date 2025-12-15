@@ -39,22 +39,22 @@ class Hero:
         self._nom = nominit
         self._classe = classeinit
         if classeinit == 'Inspecteur':
-            self._competence = {"force": 0, "charisme": 1, "intelligence": 2, "agilité": 1}
+            self._competence = {"force": 20, "charisme": 10, "intelligence": 10}
         elif classeinit == 'Commissaire':
-            self._competence = {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
+            self._competence = {"force": 10, "charisme": 20, "intelligence": 10}
         else:  # Détective
-            self._competence = {"force": 0, "charisme": 2, "intelligence": 2}
+            self._competence = {"force": 10, "charisme": 10, "intelligence": 20}
 
         self.inventaire = inventaireinit
 
     @property
-    def getnom(self):
+    def get_nom(self):
         return self._nom
     @property
-    def getcompetence(self):
+    def get_competence(self):
         return self._competence
     @property
-    def getclasse(self):
+    def get_classe(self):
         return self._classe
     @property
     def get_inventaire(self):
@@ -70,7 +70,8 @@ class Hero:
         info += f"Or: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
         info += f"{'=' * 50}\n"
         return info
-    def modifcompetence(self, competence, signe, nbr):
+
+    def modif_competence(self, competence, signe, nbr):
         """
         Fonction de modification de competence de personnage en donnant le nom du personnage
             nom : str # le nom de l'instance
