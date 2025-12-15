@@ -47,16 +47,16 @@ class Hero:
 
         self.inventaire = inventaireinit
 
-    @property
+    @property #getter
     def get_nom(self):
         return self._nom
-    @property
+    @property #getter
     def get_competence(self):
         return self._competence
-    @property
+    @property #getter
     def get_classe(self):
         return self._classe
-    @property
+    @property #getter
     def get_inventaire(self):
         return self.inventaire
 
