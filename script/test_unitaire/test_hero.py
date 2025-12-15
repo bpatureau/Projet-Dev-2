@@ -35,11 +35,11 @@ class TestHero:
         hero = Hero("Watson", "Commissaire", inventaireinit)
         hero.modif_competence("force", "-", 1)
 
-        assert hero.get_competence["force"] == 19  # 20 - 1 = 19
+        assert hero.get_competence["force"] == 9  # 10 - 1 = 9
 
     def test_modif_competence_ne_descend_pas_sous_zero(self):
         hero = Hero("Lestrade", "Inspecteur", inventaireinit)
-        hero.modif_competence("force", "-", 15)
+        hero.modif_competence("force", "-", 25)
 
         assert hero.get_competence["force"] == 0  # Ne peut pas être négatif
 #--------------------------------------------
@@ -61,7 +61,9 @@ class TestChoixClasseHero:
 
     @patch('script.classes.hero.input', side_effect=['z', 'a'])
     def test_choix_classe_invalide_puis_valide(self, mock_input):
-        """Test qu'un choix invalide redemande jusqu'à obtenir un choix valide"""
+        """
+        Test qu'un choix invalide redemande jusqu'à obtenir un choix valide
+        """
         classe = choixclassehero()
         assert classe == "Inspecteur"
         assert mock_input.call_count == 2  # Appelé 2 fois
@@ -75,8 +77,8 @@ class TestCreationHero:
 
         hero = creationhero()
 
-        assert hero.getnom == "Columbo"
-        assert hero.getclasse == "Détective"
+        assert hero.get_nom == "Columbo"
+        assert hero.get_classe == "Détective"
         assert "Columbo" in nomhero
         assert nomhero["Columbo"] == hero
 
