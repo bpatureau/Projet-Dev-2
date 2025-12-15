@@ -62,7 +62,10 @@ class TestChoixClasseHero:
     @patch('script.classes.hero.input', side_effect=['z', 'a'])
     def test_choix_classe_invalide_puis_valide(self, mock_input):
         """
-        Test qu'un choix invalide redemande jusqu'à obtenir un choix valide
+        Scénario :
+        1. L'utilisateur tape 'z' (invalide)
+        2. L'utilisateur tape 'a' (valide)
+        call_count vérifie q'ils y a bien eu 2 tests
         """
         classe = choixclassehero()
         assert classe == "Inspecteur"
@@ -70,6 +73,9 @@ class TestChoixClasseHero:
 
 
 class TestCreationHero:
+    """
+    test qui crée plusieurs hero
+    """
     @patch('script.classes.hero.input', return_value='Columbo')
     @patch('script.classes.hero.choixclassehero', return_value='Détective')
     def test_creation_hero_fonction(self, mock_choix, mock_input):
