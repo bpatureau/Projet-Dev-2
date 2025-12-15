@@ -67,7 +67,7 @@ class Hero:
         info += f"Force: {self._competence['force']} | "
         info += f"Intelligence: {self._competence['intelligence']} | "
         info += f"Charisme: {self._competence['charisme']}\n"
-        info += f"Or: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
+        info += f"argent: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
         info += f"{'=' * 50}\n"
         return info
 
