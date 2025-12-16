@@ -20,6 +20,8 @@ def choixclassehero():
 # Fonction de création de perso Hero par un input pour le nom du hero
 def creationhero():
     nom = input("Entrez votre nom: ")
+    if not nom:
+        nom = "Aventurier"
     classe = choixclassehero()
     nomhero[nom] = Hero(nom, classe, inventaireinit)
     return nomhero[nom]

@@ -1,4 +1,4 @@
-from classes import Hero, ListeDeChoix, Aventure, creationhero
+from classes import Hero, ListeDeChoix, Aventure, creationhero, inventaireinit
 import json
 import os
 from pathlib import Path
@@ -43,10 +43,7 @@ class InterfaceCLI:
                 break
             print("Choix invalide!")
 
-        nom_hero = input("\nNom de votre héros: ").strip()
-        if not nom_hero:
-            nom_hero = "Aventurier"
-        hero = Hero(nom_hero)
+        hero = creationhero()
         self.aventure = Aventure(aventure_choisie["nom"], hero)
 
         if not self.initialiser_monde(aventure_choisie["fichier"]):
