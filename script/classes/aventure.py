@@ -5,7 +5,7 @@ import re
 class Aventure:
     def __init__(self, nom:str, hero):
         self.nom = nom
-        self.hero = hero
+        self._hero = hero
         self.pnj = {}
         self.en_cours = False
     def __str__(self):
@@ -25,7 +25,7 @@ class Aventure:
     def afficher_affinites(self):
         for nom_pnj, affinite in self.pnj.items():
             print(f"{nom_pnj}: {affinite}")
-    def afficher_pnj_affinite(self, affinite_min: int):
+    def afficher_affinite_sup(self, affinite_min: int):
         pnj_amis = filter(lambda p: p[1] >= affinite_min, self.pnj.items())
         noms = map(lambda p: p[0], pnj_amis)
         print("PNJ amis :", list(noms))
@@ -34,11 +34,11 @@ class Aventure:
     def get_pnj(self):
         return self.pnj
     @property
-    def get_hero(self):
-        return self.hero
+    def hero(self):
+        return self._hero
     @hero.setter
     def hero(self, new_hero):
-        self.hero = new_hero
+        self._hero = new_hero
     
 
 
