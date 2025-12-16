@@ -1,13 +1,13 @@
 from script.classes.inventaire import Inventaire
 
 #Ensemble des variables globales
-listeClasse = ["Inspecteur", "Commissaire", "Détective"]
+listeClasse = ["Guerrier", "Barde", "Mage"]
 nomhero = {}
 inventaireinit = Inventaire()
 #--------------------------------------------
 # Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
 def choixclassehero():
-    choix = input("Entrez votre choix parmi Inspecteur (a), Commissaire (b) et Détective (c): ")
+    choix = input("Entrez votre choix parmi Guerrier (a), Barde (b) et Mage (c): ")
     if choix == "a":
         return listeClasse[0]
     elif choix == "b":
@@ -38,11 +38,11 @@ class Hero:
     def __init__(self, nominit :str , classeinit : str, inventaireinit):
         self._nom = nominit
         self._classe = classeinit
-        if classeinit == 'Inspecteur':
+        if classeinit == 'Guerrier':
             self._competence = {"force": 20, "charisme": 10, "intelligence": 10}
-        elif classeinit == 'Commissaire':
+        elif classeinit == 'Barde':
             self._competence = {"force": 10, "charisme": 20, "intelligence": 10}
-        else:  # Détective
+        else:  # Mage
             self._competence = {"force": 10, "charisme": 10, "intelligence": 20}
 
         self.inventaire = inventaireinit
@@ -64,6 +64,7 @@ class Hero:
         info = f"\n{'=' * 50}\n"
         info += f"HÉROS: {self._nom}\n"
         info += f"{'=' * 50}\n"
+        info += f"Classe: {self._classe}\n | "
         info += f"Force: {self._competence['force']} | "
         info += f"Intelligence: {self._competence['intelligence']} | "
         info += f"Charisme: {self._competence['charisme']}\n"
