@@ -2,6 +2,10 @@ from .liste_de_choix import *
 from .hero import *
 import re
 
+
+class pnjNonExistant(Exception):
+    pass
+
 class Aventure:
     def __init__(self, nom:str, hero):
         self.nom = nom
@@ -19,9 +23,10 @@ class Aventure:
     def switchAdventureState(self):
         self.en_cours = not self.en_cours
     def affinite_pnj(self, nom_pnj: str, variation: int):
-        if nom_pnj in self.pnj:
-            nouvelle_affinite = max(0, min(100, self.pnj[nom_pnj] + variation))
-            self.pnj[nom_pnj] = nouvelle_affinite
+        if nom_pnj not in self.pnj:
+            raise pnjNonExistant(f"PNJ '{nom_pnj}' non trouvé dans l'aventure.")
+        nouvelle_affinite = self.pnj[nom_pnj] + variation
+        self.pnj[nom_pnj] = max(0, min(100, nouvelle_affinite))
     def afficher_affinites(self):
         for nom_pnj, affinite in self.pnj.items():
             print(f"{nom_pnj}: {affinite}")
@@ -39,16 +44,9 @@ class Aventure:
     def hero(self, new_hero):
         self._hero = new_hero
     
-
-
-
-
-
-
     
 def creationAventure():
     nomAventure = input("Entrez le nom de votre aventure: ")
     hero = creationhero()
     aventure = Aventure(nomAventure, hero)
     return aventure
-
