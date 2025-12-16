@@ -1,0 +1,89 @@
+{
+  "nom": "La Forêt Enchantée",
+  "description": "Sauvez une princesse prisonnière d'une sorcière dans une forêt magique",
+  "or_depart": 0,
+  "node_depart": "orée_foret",
+  "pnj": [
+    {
+      "nom": "Elfe de la forêt",
+      "affinite_initiale": 40
+    },
+    {
+      "nom": "Sorcière Maleficia",
+      "affinite_initiale": 0
+    }
+  ],
+  "nodes": [
+    {
+      "id": "orée_foret",
+      "description": "Vous arrivez à l'orée d'une forêt dense et mystérieuse. Les arbres semblent vivants et vous observent. Au loin, vous entendez des chants mélodieux. On dit qu'une princesse y est retenue prisonnière par une sorcière maléfique.",
+      "propositions": [
+        {
+          "texte": "Foncer directement vers la tour de la sorcière",
+          "consequence": "Dans votre précipitation, vous tombez dans un piège magique! Des racines vous enserrent et vous étouffent... GAME OVER",
+          "suivant": null,
+          "defaite": true
+        },
+        {
+          "texte": "Suivre les chants mélodieux pour trouver de l'aide",
+          "consequence": "Vous suivez la mélodie et rencontrez un elfe bienveillant. Il vous offre une fleur magique qui pourra vous protéger de la sorcière.",
+          "suivant": "rencontre_elfe"
+        }
+      ]
+    },
+    {
+      "id": "rencontre_elfe",
+      "description": "L'elfe vous sourit chaleureusement. 'Bienvenue, brave aventurier. Je sens que votre cœur est pur. Cette fleur de lumière vous protégera de la magie noire. Mais attention, vous devrez user de diplomatie ou de ruse avec la sorcière.'",
+      "propositions": [
+        {
+          "texte": "Remercier l'elfe et vous diriger vers la tour",
+          "consequence": "Fortifié par la bénédiction de l'elfe, vous avancez prudemment vers la sombre tour où se trouve la princesse.",
+          "suivant": "tour_sorciere"
+        },
+        {
+          "texte": "Demander à l'elfe de vous accompagner",
+          "consequence": "L'elfe accepte de vous guider. Avec son aide, le chemin devient plus sûr et vous atteignez la tour sans encombre.",
+          "suivant": "tour_sorciere",
+          "prerequis": {
+            "pnj": "Elfe de la forêt",
+            "affinite_min": 35
+          }
+        }
+      ]
+    },
+    {
+      "id": "tour_sorciere",
+      "description": "Vous vous tenez devant une tour sombre entourée de brume violette. La sorcière Maleficia apparaît sur le balcon. 'Encore un héros stupide venu mourir!' crie-t-elle en ricanant. La princesse est visible derrière elle, enfermée dans une cage de cristal.",
+      "propositions": [
+        {
+          "texte": "Attaquer la sorcière avec votre épée",
+          "consequence": "La sorcière vous transforme en crapaud d'un geste de la main! Sans la protection de la fleur, vous étiez sans défense... GAME OVER",
+          "suivant": null,
+          "defaite": true,
+          "prerequis": {
+            "objet": "fleur_magique_inexistante"
+          }
+        },
+        {
+          "texte": "Utiliser votre charisme pour négocier avec la sorcière",
+          "consequence": "Votre éloquence touche le cœur solitaire de la sorcière. Elle accepte de libérer la princesse en échange de votre promesse de lui rendre visite une fois par an. La princesse est libre!",
+          "suivant": "victoire",
+          "prerequis": {
+            "caracteristique": "charisme",
+            "valeur_min": 9
+          }
+        },
+        {
+          "texte": "Présenter la fleur magique comme offrande de paix",
+          "consequence": "La fleur de lumière éblouit la sorcière qui, surprise par tant de gentillesse, se radoucit. Elle libère la princesse et vous bénit tous les deux. La magie noire se dissipe!",
+          "suivant": "victoire"
+        }
+      ]
+    },
+    {
+      "id": "victoire",
+      "description": "Victoire! La princesse est libre et la sorcière a retrouvé une once de bonté. La forêt entière célèbre votre succès. Les elfes vous proclament héros de la forêt enchantée!\n\n*** VICTOIRE ***",
+      "propositions": []
+    }
+  ]
+}
