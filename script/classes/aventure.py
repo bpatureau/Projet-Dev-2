@@ -28,11 +28,10 @@ class Aventure:
     def afficher_affinite_sup(self, affinite_min: int):
         pnj_amis = filter(lambda p: p[1] >= affinite_min, self.pnj.items())
         noms = map(lambda p: p[0], pnj_amis)
-        print("PNJ amis :", list(noms))
-
-    @property
+        return(list(noms))
     def get_pnj(self):
         return self.pnj
+    
     @property
     def hero(self):
         return self._hero
