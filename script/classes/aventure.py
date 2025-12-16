@@ -12,6 +12,11 @@ class Aventure:
         self._hero = hero
         self.pnj = {}
         self.en_cours = False
+        self.node_courant = None
+        self.historique_nodes = []
+        self.nodes={}
+        self.win=False
+        self.lose=False
     def __str__(self):
         return f"""Bienvenu dans l'aventure {self.nom},
  le héros {self.hero}"""
@@ -36,7 +41,6 @@ class Aventure:
         return(list(noms))
     def get_pnj(self):
         return self.pnj
-    
     @property
     def hero(self):
         return self._hero
@@ -44,7 +48,37 @@ class Aventure:
     def hero(self, new_hero):
         self._hero = new_hero
     
-    
+    def ajouter_node(self, node):
+        self.nodes[node.id] = node
+    def get_node(self, node_id):
+        return self.nodes.get(node_id, None)
+    def set_node_courant(self, node_id):
+        if node_id in self.nodes:
+            self.node_courant = self.nodes[node_id]
+            self.historique_nodes.append(self.node_courant)
+            return True
+        return False
+
+    def faire_choix(self, choix_index):
+        if self.node_courant is None:
+            return "Aucun node courant défini."
+        
+        propositions = self.node_courant.obtenir_propositions_disponibles(self._hero, self.pnj)
+        if choix_index < 0 or choix_index > len(propositions):
+            return "Choix invalide."
+        choix = propositions[choix_index]
+        if choix.get("defaite", False):
+            self.en_cours = False
+            self.lose = True
+        if choix["suivant"]:
+            if choix["suivant"] == "victoire":
+                self.en_cours = False
+                self.win = True
+            else:
+                self.set_node_courant(choix["suivant"])
+        return choix["consequence"]
+
+
 def creationAventure():
     nomAventure = input("Entrez le nom de votre aventure: ")
     hero = creationhero()
