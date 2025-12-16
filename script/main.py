@@ -6,6 +6,11 @@ class InterfaceCLI:
     def __init__(self):
         self.aventure = None
 
+    def afficher_titre(self):
+        titre = ("\n" + "="*60)
+        titre += (f"    L'ASCENSION DU HÉROS - AVENTURE TEXTUELLE")
+        titre += (f"="*60 + "\n")
+        print(titre)
 # -----------------------------------
 def main():
     """
@@ -14,4 +19,4 @@ def main():
     interface = InterfaceCLI()
 
 if __name__ == '__ main __' :
-    print('Hello World')
+    main()
