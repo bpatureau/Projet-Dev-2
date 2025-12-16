@@ -1,57 +1,17 @@
-from classes import Aventure, Hero, Inventaire, ListeDeChoix
+from classes import Hero, Inventaire, ListeDeChoix, Aventure
+
+
+class InterfaceCLI:
+
+    def __init__(self):
+        self.aventure = None
+
+# -----------------------------------
+def main():
+    """
+    Fonction pour lancer le jeu
+    """
+    interface = InterfaceCLI()
 
 if __name__ == '__ main __' :
     print('Hello World')
-"""
-    Variables globales
-        Choix:
-            type: object
-            description : 
-                Ensemble des variables (boolean/int) des choix fait à chaque évènement.
-            type de variable: 
-                            -boolean : répond à une question oui/non (ex:a parlé à tel PNJ)
-                            -int : indique un élément cumulable global (ex: or,potion de soin, appréciation d'un PNJ)
-        Aventure:
-            type: class 
-            description : 
-                à chaque partie commencée, crée une liste qui reprend les variables pour reprendre
-                la partie là ou l'a arrêté et afficher le score à la fin et les actions effectuées.
-            variables : 
-                -nom du personage
-                -date
-                -score
-                -(chronologie des choix ?)
-                -(objet personage ?)
-    Personage
-        type:  object
-        description : 
-            A chaque nouvelle partie crée un nouveaux personage
-        variable : 
-            -nom
-            -PV
-            -Or
-            -(autre caractéristique ?)
-"""
-
-"""
-    Format évènement:
-        description : 
-            fonction à switch (ou une suite de "if else") qui attend l'input de l'utilisateur pour lancer la suite du programme
-        type de choix:
-                    -options limitée (choix de dialogue)
-                    -taper du texte (pour une énigme ?)
-        nota bene : créer un évènement "type" et le dupliquer
-"""
-
-"""
-    Interface graphique:
-        -texte cliquable
-        -(visuel de l'avancement dans l'histoire ?)
-"""
-"""
-    (Sauvegarde ?)
-"""
-"""
-        description:
-            copie 'Aventure' dans un fichier .txt/jason pour reprendre les informations
-"""
