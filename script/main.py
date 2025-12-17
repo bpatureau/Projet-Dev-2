@@ -1,4 +1,4 @@
-from classes import Hero, ListeDeChoix, Aventure, liste_de_choix
+from classes import Hero, ListeDeChoix, Aventure, creationhero
 import json
 import os
 from pathlib import Path
@@ -233,5 +233,5 @@ def main():
     """
     interface = InterfaceCLI()
     interface.menu_principal()
-if __name__ == '__ main __' :
+if __name__ == '__main__':
     main()
