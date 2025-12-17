@@ -61,7 +61,10 @@ class Hero:
     @property #getter
     def get_inventaire(self):
         return self.inventaire
-
+    @get_competence.setter
+    def get_competence(self, competence):
+        self._competence = competence
+# --------------------------------------------
     def afficher_info(self):
         info = f"\n{'=' * 50}\n"
         info += f"HÉROS: {self._nom}\n"
@@ -89,3 +92,4 @@ class Hero:
             self._competence[competence] += nbr
         else: #max(0, résultat)-> le plus grand des deux est prix entre 0 et le résultat du calcul, donc 0 est le min
             self._competence[competence] = max(0, self._competence[competence] - nbr)
+#--------------------------------------------
