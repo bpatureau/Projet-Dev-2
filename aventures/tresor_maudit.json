@@ -1,0 +1,63 @@
+{
+  "nom": "Le Trésor Maudit",
+  "description": "Explorez un temple ancien à la recherche d'un trésor légendaire",
+  "node_depart": "entree_temple",
+  "pnj": [
+    {
+      "nom": "Gardien du Temple",
+      "affinite_initiale": 30
+    }
+  ],
+  "nodes": [
+    {
+      "id": "entree_temple",
+      "description": "Vous vous tenez devant l'entrée d'un temple ancien couvert de lierre. Des inscriptions mystérieuses ornent les colonnes. Un vieux gardien vous observe depuis l'ombre.",
+      "propositions": [
+        {
+          "texte": "Entrer dans le temple en ignorant le gardien",
+          "consequence": "Le gardien vous lance un sort de malédiction! Vous tombez raide mort... GAME OVER",
+          "suivant": null,
+          "defaite": true
+        },
+        {
+          "texte": "Saluer respectueusement le gardien et demander la permission",
+          "consequence": "Le gardien apprécie votre respect. Il vous remet une clé ancienne et vous explique que vous devrez faire preuve d'intelligence pour progresser dans le temple.",
+          "suivant": "salle_enigme",
+          "prerequis": null
+        }
+      ]
+    },
+    {
+      "id": "salle_enigme",
+      "description": "Vous entrez dans une grande salle avec trois portes. Au centre, une inscription dit: 'Seul l'esprit éclairé trouvera le chemin'. Vous devez choisir judicieusement.",
+      "propositions": [
+        {
+          "texte": "Ouvrir la porte de gauche ornée de symboles de force",
+          "consequence": "La porte s'ouvre sur un piège mortel! Des lames vous transpercent... GAME OVER",
+          "suivant": null,
+          "defaite": true
+        },
+        {
+          "texte": "Ouvrir la porte du milieu ornée de symboles de sagesse",
+          "consequence": "Votre intelligence vous guide vers le bon choix! La porte s'ouvre sur la salle du trésor. Vous trouvez un coffre rempli d'or et de gemmes précieuses!",
+          "suivant": "victoire",
+          "prerequis": {
+            "caracteristique": "intelligence",
+            "valeur_min": 8
+          }
+        },
+        {
+          "texte": "Examiner attentivement les inscriptions avant de choisir",
+          "consequence": "En étudiant les symboles, vous comprenez que la porte du milieu est la bonne. Vous l'ouvrez avec confiance et découvrez le trésor!",
+          "suivant": "victoire",
+          "prerequis": null
+        }
+      ]
+    },
+    {
+      "id": "victoire",
+      "description": "Félicitations! Vous avez trouvé le trésor maudit! Les gemmes brillent de mille feux. Vous êtes maintenant riche et votre nom sera gravé dans l'histoire des grands aventuriers!\n\n*** VICTOIRE ***",
+      "propositions": []
+    }
+  ]
+}

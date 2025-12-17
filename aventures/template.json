@@ -1,0 +1,51 @@
+{
+  "nom": "Nom de votre aventure",
+  "description": "Description courte de votre aventure",
+  "or_depart": 0,
+  "node_depart": "debut",
+  "pnj": [
+    {
+      "nom": "Nom du PNJ",
+      "affinite_initiale": 50
+    }
+  ],
+  "nodes": [
+    {
+      "id": "debut",
+      "description": "Description de la situation initiale...",
+      "propositions": [
+        {
+          "texte": "Premier choix",
+          "consequence": "Ce qui se passe...",
+          "suivant": "node_suivant",
+          "defaite": false,
+          "prerequis": null
+        },
+        {
+          "texte": "Deuxième choix",
+          "consequence": "Ce qui se passe...",
+          "suivant": null,
+          "defaite": true,
+          "prerequis": null
+        }
+      ]
+    },
+    {
+      "id": "node_suivant",
+      "description": "Description de la situation suivante...",
+      "propositions": [
+        {
+          "texte": "Choix final",
+          "consequence": "Conclusion...",
+          "suivant": "victoire",
+          "prerequis": null
+        }
+      ]
+    },
+    {
+      "id": "victoire",
+      "description": "Félicitations! Vous avez terminé l'aventure!\n\n*** VICTOIRE ***",
+      "propositions": []
+    }
+  ]
+}

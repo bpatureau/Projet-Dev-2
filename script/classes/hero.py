@@ -1,10 +1,13 @@
+from script.classes.inventaire import Inventaire
+
 #Ensemble des variables globales
-listeClasse = ["Inspecteur", "Commissaire", "Détective"]
+listeClasse = ["Guerrier", "Barde", "Mage"]
 nomhero = {}
+inventaireinit = Inventaire()
 #--------------------------------------------
 # Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
 def choixclassehero():
-    choix = input("Entrez votre choix parmi Inspecteur (a), Commissaire (b) et Détective (c): ")
+    choix = input("Entrez votre choix parmi Guerrier (a), Barde (b) et Mage (c): ")
     if choix == "a":
         return listeClasse[0]
     elif choix == "b":
@@ -17,8 +20,10 @@ def choixclassehero():
 # Fonction de création de perso Hero par un input pour le nom du hero
 def creationhero():
     nom = input("Entrez votre nom: ")
+    if not nom:
+        nom = "Aventurier"
     classe = choixclassehero()
-    nomhero[nom] = Hero(nom, classe)
+    nomhero[nom] = Hero(nom, classe, inventaireinit)
     return nomhero[nom]
 #--------------------------------------------
 class Hero:
@@ -32,24 +37,44 @@ class Hero:
                 - competence (force, charisme, intelligence et agilité), en fonction de la classe
                 - inventaire
     """
-    def __init__(self, nom :str , classe : str ):
-        self.nom = nom
-        self.classe = classe
-        if classe == 'Inspecteur':
-            self.competence = {"force":0,"charisme":1,"intelligence":2, "agilité":1}
-        elif classe == 'Commissaire':
-            self.competence = {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
-        else: # Détective
-            self.competence = {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
-        # self.inventaire = appel inventaire.py et lier à instance d'inventaire
-    def __str__(self):
-        return (f"nom : {self.nom} classe : {self.classe} \n"
-                f"force : {self.competence['force']} \n"
-                f"charisme : {self.competence['charisme']} \n"
-                f"intelligence : {self.competence['intelligence']} \n"
-                f"agilité : {self.competence['agilité']}")
+    def __init__(self, nominit :str , classeinit : str, inventaireinit):
+        self._nom = nominit
+        self._classe = classeinit
+        if classeinit == 'Guerrier':
+            self._competence = {"force": 20, "charisme": 10, "intelligence": 10}
+        elif classeinit == 'Barde':
+            self._competence = {"force": 10, "charisme": 20, "intelligence": 10}
+        else:  # Mage
+            self._competence = {"force": 10, "charisme": 10, "intelligence": 20}
 
-    def modifcompetence(self, competence, signe, nbr):
+        self.inventaire = inventaireinit
+
+    @property #getter
+    def get_nom(self):
+        return self._nom
+    @property #getter
+    def get_competence(self):
+        return self._competence
+    @property #getter
+    def get_classe(self):
+        return self._classe
+    @property #getter
+    def get_inventaire(self):
+        return self.inventaire
+
+    def afficher_info(self):
+        info = f"\n{'=' * 50}\n"
+        info += f"HÉROS: {self._nom}\n"
+        info += f"{'=' * 50}\n"
+        info += f"Classe: {self._classe}\n | "
+        info += f"Force: {self._competence['force']} | "
+        info += f"Intelligence: {self._competence['intelligence']} | "
+        info += f"Charisme: {self._competence['charisme']}\n"
+        info += f"argent: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
+        info += f"{'=' * 50}\n"
+        return info
+
+    def modif_competence(self, competence, signe, nbr):
         """
         Fonction de modification de competence de personnage en donnant le nom du personnage
             nom : str # le nom de l'instance
@@ -57,11 +82,10 @@ class Hero:
             signe : bollean # augmenter ("+") ou diminuer ("-") une competence
             nbr : int # de combien augmenter/diminuer
         """
-        if competence not in self.competence:
+        if competence not in self._competence:
             print(f"Erreur : La compétence '{competence}' n'existe pas.")
             return
         if signe == "+":
-            self.competence[competence] += nbr
+            self._competence[competence] += nbr
         else: #max(0, résultat)-> le plus grand des deux est prix entre 0 et le résultat du calcul, donc 0 est le min
-            self.competence[competence] = max(0, self.competence[competence] - nbr)
-# --------------------------------------------
+            self._competence[competence] = max(0, self._competence[competence] - nbr)
