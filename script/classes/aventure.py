@@ -82,5 +82,5 @@ class Aventure:
 def creationAventure():
     nomAventure = input("Entrez le nom de votre aventure: ")
     hero = creationhero()
-    aventure = Aventure(nomAventure, hero)
+    aventure = Aventure(nomaventure, hero)
     return aventure

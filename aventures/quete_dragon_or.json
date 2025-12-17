@@ -1,0 +1,523 @@
+{
+  "nom": "La Quête du Dragon d'Or",
+  "description": "Une aventure complexe avec de nombreux embranchements et choix stratégiques",
+  "or_depart": 50,
+  "node_depart": "village",
+  "pnj": [
+    {
+      "nom": "Forgeron",
+      "affinite_initiale": 50
+    },
+    {
+      "nom": "Tavernier",
+      "affinite_initiale": 50
+    },
+    {
+      "nom": "Vieux Sage",
+      "affinite_initiale": 30
+    },
+    {
+      "nom": "Villageois",
+      "affinite_initiale": 40
+    }
+  ],
+  "nodes": [
+    {
+      "id": "village",
+      "description": "Vous êtes au centre du village de Valoria. Le soleil brille, les villageois vaquent à leurs occupations. À l'est, vous apercevez la forge fumante. À l'ouest, la taverne bruyante. Au nord, la maison du vieux sage. Au sud, le chemin menant aux montagnes où vit le redoutable Dragon d'Or. Vous avez 50 pièces d'or dans votre bourse.",
+      "propositions": [
+        {
+          "texte": "Partir immédiatement affronter le Dragon d'Or",
+          "consequence": "Vous prenez le chemin du sud avec courage. Les montagnes se dressent devant vous, majestueuses et menaçantes.",
+          "suivant": "montagne_non_prepare"
+        },
+        {
+          "texte": "Aller parler aux villageois sur la place",
+          "consequence": "Vous vous approchez d'un groupe de villageois. Ils vous racontent des légendes sur le dragon et mentionnent qu'un héros bien préparé aurait plus de chances de réussir. 'Le forgeron vend d'excellentes épées, et le sage pourrait vous enseigner des sorts utiles', dit l'un d'eux.",
+          "suivant": "village_apres_villageois"
+        },
+        {
+          "texte": "Aller à la forge acheter une épée (coûte 30 Or)",
+          "consequence": "Vous entrez dans la forge. Le forgeron, un homme massif au tablier de cuir, vous présente une magnifique épée en acier. 'Elle te coûtera 30 pièces d'or, mais elle vaut chaque pièce!' Vous achetez l'épée et sentez immédiatement sa qualité.",
+          "suivant": "village_avec_epee",
+          "prerequis": {
+            "or_min": 30
+          }
+        },
+        {
+          "texte": "Aller à la taverne boire une bière (coûte 10 Or)",
+          "consequence": "Vous entrez dans la taverne enfumée. Le tavernier vous sert une chope de bière fraîche. En discutant avec lui, vous apprenez des informations précieuses sur les habitudes du dragon. Votre charisme augmente de 2 points grâce à cette interaction sociale!",
+          "suivant": "village_apres_taverne",
+          "prerequis": {
+            "or_min": 10
+          }
+        },
+        {
+          "texte": "Aller voir le vieux sage pour apprendre la magie (coûte 40 Or)",
+          "consequence": "Vous montez les marches de la maison du sage. Le vieil homme vous accueille avec un sourire mystérieux. 'Je peux t'enseigner un sort de protection, jeune aventurier. Pour 40 pièces d'or.' Vous acceptez et passez plusieurs heures à apprendre. Votre intelligence augmente de 3 points!",
+          "suivant": "village_apres_sage",
+          "prerequis": {
+            "or_min": 40
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_apres_villageois",
+      "description": "Vous revenez au centre du village, enrichi des conseils des villageois. Vous savez maintenant qu'il serait sage de vous préparer avant d'affronter le dragon. Vous avez toujours 50 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le Dragon d'Or maintenant",
+          "consequence": "Armé des connaissances des villageois, vous prenez la route des montagnes. Vous vous sentez un peu plus confiant.",
+          "suivant": "montagne_avec_info"
+        },
+        {
+          "texte": "Aller à la forge acheter une épée (coûte 30 Or)",
+          "consequence": "Le forgeron vous accueille chaleureusement. Vous achetez son épée en acier pour 30 pièces d'or. 'Avec ça et les conseils des villageois, tu as une vraie chance!' dit-il.",
+          "suivant": "village_avec_epee_et_info",
+          "prerequis": {
+            "or_min": 30
+          }
+        },
+        {
+          "texte": "Aller à la taverne boire une bière (coûte 10 Or)",
+          "consequence": "Le tavernier vous sert avec enthousiasme. Entre deux gorgées, vous discutez stratégie. Votre charisme augmente de 2 points!",
+          "suivant": "village_apres_taverne_et_villageois",
+          "prerequis": {
+            "or_min": 10
+          }
+        },
+        {
+          "texte": "Aller voir le vieux sage pour apprendre la magie (coûte 40 Or)",
+          "consequence": "Le sage vous enseigne un puissant sort de protection. Combiné aux informations des villageois, vous vous sentez prêt! Votre intelligence augmente de 3 points!",
+          "suivant": "village_apres_sage_et_villageois",
+          "prerequis": {
+            "or_min": 40
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_avec_epee",
+      "description": "Vous êtes de retour au centre du village, votre nouvelle épée à la ceinture. Elle brille au soleil et vous donne confiance. Il vous reste 20 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le Dragon d'Or avec votre épée",
+          "consequence": "Épée en main, vous prenez le chemin des montagnes. Le poids de l'arme vous rassure.",
+          "suivant": "montagne_avec_epee"
+        },
+        {
+          "texte": "Parler aux villageois pour obtenir des conseils",
+          "consequence": "Les villageois admirent votre épée et vous donnent des conseils tactiques précieux. 'Avec cette lame, tu as de vraies chances!'",
+          "suivant": "village_avec_epee_et_info"
+        },
+        {
+          "texte": "Aller à la taverne boire une bière (coûte 10 Or)",
+          "consequence": "Le tavernier admire votre épée. Autour d'une bière, vous partagez vos plans. Votre charisme augmente de 2 points!",
+          "suivant": "village_avec_epee_et_taverne",
+          "prerequis": {
+            "or_min": 10
+          }
+        },
+        {
+          "texte": "Aller voir le vieux sage (mais vous n'avez pas assez d'or)",
+          "consequence": "Le sage vous regarde tristement. 'Tu n'as que 20 pièces, mon ami. J'ai besoin de 40 pour t'enseigner. Reviens avec plus d'or ou pars avec ton épée!'",
+          "suivant": "village_avec_epee",
+          "prerequis": {
+            "or_min": 40
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_avec_epee_et_info",
+      "description": "Vous voilà équipé d'une épée de qualité et riche des conseils des villageois. Vous vous sentez bien préparé! Il vous reste 20 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le Dragon d'Or maintenant",
+          "consequence": "Épée en main et stratégie en tête, vous prenez le chemin des montagnes avec détermination.",
+          "suivant": "montagne_bien_prepare"
+        },
+        {
+          "texte": "Aller à la taverne pour une dernière bière avant le combat (coûte 10 Or)",
+          "consequence": "Une dernière tournée pour vous donner du courage! Le tavernier vous souhaite bonne chance. Votre charisme augmente de 2 points!",
+          "suivant": "village_epee_info_taverne",
+          "prerequis": {
+            "or_min": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_apres_taverne",
+      "description": "Vous sortez de la taverne, l'esprit un peu embrumé mais le moral au beau fixe. Le tavernier vous a donné de bonnes informations! Il vous reste 40 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le dragon avec les infos de la taverne",
+          "consequence": "Fort des secrets du tavernier, vous prenez la route des montagnes.",
+          "suivant": "montagne_avec_charisme"
+        },
+        {
+          "texte": "Parler aux villageois",
+          "consequence": "Les villageois sentent l'odeur de bière mais vous écoutent quand même. Ils ajoutent leurs propres conseils.",
+          "suivant": "village_apres_taverne_et_villageois"
+        },
+        {
+          "texte": "Aller à la forge acheter une épée (coûte 30 Or)",
+          "consequence": "Le forgeron sourit. 'Une épée ET du courage liquide? Excellente combinaison!' Vous achetez l'épée.",
+          "suivant": "village_avec_epee_et_taverne",
+          "prerequis": {
+            "or_min": 30
+          }
+        },
+        {
+          "texte": "Aller voir le sage (coûte 40 Or)",
+          "consequence": "Le sage renifle. 'Tu sens la bière, mais ton esprit est clair. Je vais t'enseigner.' Votre intelligence augmente de 3 points!",
+          "suivant": "village_apres_sage_et_taverne",
+          "prerequis": {
+            "or_min": 40
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_avec_epee_et_taverne",
+      "description": "Vous avez une épée magnifique et les conseils du tavernier en tête. Une bonne combinaison! Il vous reste 10 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le dragon",
+          "consequence": "Épée brillante et confiance renforcée par la bière, vous partez vers les montagnes!",
+          "suivant": "montagne_epee_charisme"
+        },
+        {
+          "texte": "Parler aux villageois avant de partir",
+          "consequence": "Les villageois vous félicitent pour vos préparatifs et ajoutent leurs conseils.",
+          "suivant": "village_epee_info_taverne"
+        }
+      ]
+    },
+    {
+      "id": "village_apres_sage",
+      "description": "Vous sortez de chez le sage, la tête remplie de connaissances magiques. Un sort de protection pulse dans votre esprit. Il vous reste 10 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le dragon avec votre magie",
+          "consequence": "Confiant dans vos nouveaux pouvoirs magiques, vous prenez le chemin des montagnes.",
+          "suivant": "montagne_avec_magie"
+        },
+        {
+          "texte": "Parler aux villageois",
+          "consequence": "Les villageois sont impressionnés par votre aura magique. Ils vous donnent des conseils supplémentaires.",
+          "suivant": "village_apres_sage_et_villageois"
+        },
+        {
+          "texte": "Aller à la taverne (coûte 10 Or)",
+          "consequence": "Le tavernier est émerveillé par votre magie. Vous échangez connaissances contre bière. Charisme +2!",
+          "suivant": "village_apres_sage_et_taverne",
+          "prerequis": {
+            "or_min": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_apres_taverne_et_villageois",
+      "description": "Armé des conseils des villageois ET des secrets du tavernier, vous êtes bien informé! Il vous reste 40 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le dragon maintenant",
+          "consequence": "Riche de toutes ces informations, vous prenez la route des montagnes.",
+          "suivant": "montagne_info_complete"
+        },
+        {
+          "texte": "Acheter une épée à la forge (coûte 30 Or)",
+          "consequence": "Avec l'épée en plus de toutes vos connaissances, vous êtes redoutable!",
+          "suivant": "village_epee_info_taverne",
+          "prerequis": {
+            "or_min": 30
+          }
+        },
+        {
+          "texte": "Aller voir le sage (coûte 40 Or)",
+          "consequence": "Le sage complète votre formation. Information + magie = puissance! Intelligence +3!",
+          "suivant": "village_sage_info_complete",
+          "prerequis": {
+            "or_min": 40
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_epee_info_taverne",
+      "description": "Vous avez TOUT: une épée, les conseils des villageois ET du tavernier, plus un charisme boosté! Il vous reste 10 pièces d'or. Vous êtes au maximum de votre préparation!",
+      "propositions": [
+        {
+          "texte": "Partir affronter le Dragon d'Or - Vous êtes prêt!",
+          "consequence": "Parfaitement équipé et préparé, vous marchez vers les montagnes avec une confiance absolue!",
+          "suivant": "montagne_preparation_maximale"
+        }
+      ]
+    },
+    {
+      "id": "village_apres_sage_et_villageois",
+      "description": "Vous possédez la magie du sage ET les conseils des villageois. Une combinaison redoutable! Il vous reste 10 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le dragon avec magie et savoir",
+          "consequence": "Magie et stratégie combinées, vous partez vers les montagnes!",
+          "suivant": "montagne_magie_et_info"
+        },
+        {
+          "texte": "Aller à la taverne (coûte 10 Or)",
+          "consequence": "Une dernière bière pour célébrer votre préparation! Charisme +2!",
+          "suivant": "village_sage_info_complete",
+          "prerequis": {
+            "or_min": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "village_apres_sage_et_taverne",
+      "description": "Vous avez la magie du sage ET le charisme boosté par la taverne! Il vous reste 0 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le dragon",
+          "consequence": "Magie et charisme, vous partez confiant vers les montagnes!",
+          "suivant": "montagne_magie_charisme"
+        },
+        {
+          "texte": "Parler aux villageois avant de partir",
+          "consequence": "Un dernier conseil ne fait jamais de mal!",
+          "suivant": "village_sage_info_complete"
+        }
+      ]
+    },
+    {
+      "id": "village_sage_info_complete",
+      "description": "Vous avez atteint un niveau de préparation optimal: magie, informations complètes, et charisme! Il vous reste 0 pièces d'or.",
+      "propositions": [
+        {
+          "texte": "Partir affronter le Dragon d'Or - Préparation optimale!",
+          "consequence": "Avec magie, savoir et charisme, vous êtes l'aventurier ultime! Direction les montagnes!",
+          "suivant": "montagne_preparation_optimale"
+        }
+      ]
+    },
+    {
+      "id": "montagne_non_prepare",
+      "description": "Vous arrivez au pied des montagnes. L'ascension est difficile sans équipement. Après des heures d'escalade, vous atteignez la grotte du dragon. Le Dragon d'Or rugit en vous voyant. Vous n'avez que vos mains nues!",
+      "propositions": [
+        {
+          "texte": "Tenter de combattre le dragon sans arme",
+          "consequence": "C'était courageux mais stupide. Le dragon vous réduit en cendres d'un souffle de feu. GAME OVER",
+          "suivant": null,
+          "defaite": true
+        },
+        {
+          "texte": "Fuir et retourner au village",
+          "consequence": "La sagesse est parfois dans la retraite. Vous retournez au village, vivant mais humilié.",
+          "suivant": "village"
+        }
+      ]
+    },
+    {
+      "id": "montagne_avec_info",
+      "description": "Grâce aux conseils des villageois, vous connaissez le meilleur chemin. Vous atteignez la grotte du dragon. Le Dragon d'Or vous fixe. 'Un autre aventurier... mais celui-ci semble réfléchi.'",
+      "propositions": [
+        {
+          "texte": "Tenter de combattre sans arme",
+          "consequence": "Même avec de la stratégie, sans arme vous êtes désavantagé. Le dragon vous blesse gravement. GAME OVER",
+          "suivant": null,
+          "defaite": true
+        },
+        {
+          "texte": "Utiliser votre intelligence pour négocier",
+          "consequence": "Vous parlez avec sagesse, mais sans force pour appuyer vos mots, le dragon n'est pas convaincu. Il vous chasse violemment.",
+          "suivant": "village",
+          "prerequis": {
+            "intelligence": 13
+          }
+        }
+      ]
+    },
+    {
+      "id": "montagne_avec_epee",
+      "description": "Votre épée brille dans la lumière de la grotte. Le Dragon d'Or vous regarde avec respect. 'Un guerrier! Enfin un adversaire digne!'",
+      "propositions": [
+        {
+          "texte": "Combattre le dragon avec votre épée",
+          "consequence": "Le combat est féroce! Votre épée mord les écailles du dragon. Après un combat épique, vous triomphez par la force brute, mais vous êtes gravement blessé. Victoire amère.",
+          "suivant": "victoire_partielle"
+        },
+        {
+          "texte": "Menacer le dragon avec votre épée pour négocier",
+          "consequence": "Le dragon ricane. 'Une épée ne suffit pas à m'impressionner!' Il vous attaque sauvagement. GAME OVER",
+          "suivant": null,
+          "defaite": true
+        }
+      ]
+    },
+    {
+      "id": "montagne_bien_prepare",
+      "description": "Épée en main et stratégie en tête, vous entrez dans la grotte. Le Dragon d'Or vous observe. 'Un guerrier préparé... intéressant.'",
+      "propositions": [
+        {
+          "texte": "Utiliser votre épée avec la tactique des villageois",
+          "consequence": "Grâce à votre préparation, vous exploitez les faiblesses du dragon! Le combat est dur mais vous triomphez avec habileté. Le dragon s'incline. 'Tu as gagné, guerrier!'",
+          "suivant": "victoire"
+        },
+        {
+          "texte": "Tenter de négocier en position de force",
+          "consequence": "Votre épée et votre connaissance impressionnent le dragon. Vous négociez un accord: le dragon partagera son trésor en échange de la paix.",
+          "suivant": "victoire",
+          "prerequis": {
+            "charisme": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "montagne_avec_charisme",
+      "description": "Les conseils du tavernier résonnent dans votre esprit. Le Dragon d'Or vous regarde. Votre charisme naturel attire son attention.",
+      "propositions": [
+        {
+          "texte": "Utiliser votre charisme pour parlementer",
+          "consequence": "Votre éloquence touche le dragon solitaire. Vous trouvez un terrain d'entente et le dragon accepte de partager une partie de son trésor.",
+          "suivant": "victoire",
+          "prerequis": {
+            "charisme": 12
+          }
+        },
+        {
+          "texte": "Attaquer le dragon",
+          "consequence": "Sans arme, malgré votre charisme, vous êtes vulnérable. Le dragon vous tue. GAME OVER",
+          "suivant": null,
+          "defaite": true
+        }
+      ]
+    },
+    {
+      "id": "montagne_avec_magie",
+      "description": "Votre aura magique fait scintiller l'air autour de vous. Le Dragon d'Or, sensible à la magie, vous observe avec curiosité.",
+      "propositions": [
+        {
+          "texte": "Lancer votre sort de protection et négocier",
+          "consequence": "Le bouclier magique impressionne le dragon. Il reconnaît votre puissance et accepte de discuter. Un accord est trouvé!",
+          "suivant": "victoire",
+          "prerequis": {
+            "intelligence": 13
+          }
+        },
+        {
+          "texte": "Utiliser la magie pour attaquer",
+          "consequence": "Votre sort blesse le dragon mais il riposte violemment. Sans arme physique, vous ne pouvez finir le combat. GAME OVER",
+          "suivant": null,
+          "defaite": true
+        }
+      ]
+    },
+    {
+      "id": "montagne_epee_charisme",
+      "description": "Épée au côté et charisme boosté, vous êtes impressionnant. Le dragon vous observe avec intérêt.",
+      "propositions": [
+        {
+          "texte": "Combiner force et diplomatie",
+          "consequence": "Votre épée prouve votre force, votre charisme prouve votre sagesse. Le dragon est impressionné! Vous négociez une alliance. Le dragon devient votre allié!",
+          "suivant": "victoire_parfaite"
+        }
+      ]
+    },
+    {
+      "id": "montagne_info_complete",
+      "description": "Armé de toutes les informations disponibles, vous entrez dans la grotte avec confiance. Le dragon vous scrute.",
+      "propositions": [
+        {
+          "texte": "Utiliser toutes vos connaissances pour négocier",
+          "consequence": "Vous connaissez les secrets du dragon grâce aux villageois et au tavernier. Le dragon est étonné de votre savoir et accepte un pacte de paix!",
+          "suivant": "victoire",
+          "prerequis": {
+            "intelligence": 10
+          }
+        },
+        {
+          "texte": "Attaquer en utilisant vos connaissances tactiques",
+          "consequence": "Sans arme, même la meilleure stratégie ne suffit pas. GAME OVER",
+          "suivant": null,
+          "defaite": true
+        }
+      ]
+    },
+    {
+      "id": "montagne_magie_et_info",
+      "description": "Magie et savoir combinés, vous rayonnez de puissance. Le Dragon d'Or vous observe avec un mélange de respect et de curiosité.",
+      "propositions": [
+        {
+          "texte": "Combiner magie et connaissance pour impressionner",
+          "consequence": "Votre démonstration de magie couplée à votre connaissance approfondie du dragon le subjugue. Il vous offre une alliance! Vous devenez le Maître-Dragon!",
+          "suivant": "victoire_parfaite",
+          "prerequis": {
+            "intelligence": 13
+          }
+        }
+      ]
+    },
+    {
+      "id": "montagne_magie_charisme",
+      "description": "Magie et charisme, une combinaison rare et puissante. Le dragon sent votre aura spéciale.",
+      "propositions": [
+        {
+          "texte": "Utiliser magie et charisme pour séduire le dragon",
+          "consequence": "Votre magie impressionne, votre charisme touche le cœur solitaire du dragon. Il devient votre compagnon fidèle! Victoire légendaire!",
+          "suivant": "victoire_parfaite",
+          "prerequis": {
+            "charisme": 12,
+            "intelligence": 13
+          }
+        }
+      ]
+    },
+    {
+      "id": "montagne_preparation_maximale",
+      "description": "Vous entrez dans la grotte, parfaitement équipé. Épée, savoir tactique complet, charisme boosté. Le Dragon d'Or recule légèrement, impressionné par votre présence.",
+      "propositions": [
+        {
+          "texte": "Démontrer votre supériorité totale",
+          "consequence": "Le dragon reconnaît immédiatement en vous un adversaire suprême. Sans combattre, il s'incline et vous offre son trésor ET son allégeance. Vous êtes devenu une légende vivante! Le Dragon d'Or devient votre monture!",
+          "suivant": "victoire_legendaire"
+        }
+      ]
+    },
+    {
+      "id": "montagne_preparation_optimale",
+      "description": "Magie, savoir complet, charisme maximal. Vous êtes l'incarnation de l'aventurier parfait. Le Dragon d'Or vous observe avec un respect absolu.",
+      "propositions": [
+        {
+          "texte": "Proposer une alliance basée sur le respect mutuel",
+          "consequence": "Le dragon reconnaît en vous un égal. Vous formez une alliance légendaire. Le dragon partage non seulement son trésor mais aussi ses connaissances ancestrales. Vous devenez le premier Chevalier-Dragon de l'histoire!",
+          "suivant": "victoire_legendaire"
+        }
+      ]
+    },
+    {
+      "id": "victoire_partielle",
+      "description": "Vous avez vaincu le Dragon d'Or, mais à quel prix! Vos blessures sont graves. Le trésor est vôtre mais vous boitez en redescendant. Les villageois vous acclament, mais vous savez qu'une meilleure préparation aurait permis une victoire plus glorieuse.\n\n*** VICTOIRE (Partielle) ***",
+      "propositions": []
+    },
+    {
+      "id": "victoire",
+      "description": "Félicitations! Grâce à votre préparation, vous avez triomphé du Dragon d'Or! Le dragon vous respecte et vous offre une part généreuse de son trésor. Vous retournez au village en héros, riche et respecté!\n\n*** VICTOIRE ***",
+      "propositions": []
+    },
+    {
+      "id": "victoire_parfaite",
+      "description": "Victoire PARFAITE! Non seulement vous avez triomphé, mais vous avez gagné l'amitié ou l'allégeance du Dragon d'Or! Votre nom entrera dans les légendes. Le dragon et vous formez un duo légendaire. Les royaumes tremblent devant votre puissance combinée!\n\n*** VICTOIRE PARFAITE ***",
+      "propositions": []
+    },
+    {
+      "id": "victoire_legendaire",
+      "description": "VICTOIRE LÉGENDAIRE! Vous avez atteint la perfection! Le Dragon d'Or n'est plus votre ennemi mais votre partenaire. Vous possédez le trésor, la sagesse ancestrale du dragon, et une monture volante légendaire. Votre nom sera chanté pendant mille ans! Vous êtes devenu immortel dans la mémoire collective!\n\n*** VICTOIRE LÉGENDAIRE - FIN ULTIME ***",
+      "propositions": []
+    }
+  ]
+}
