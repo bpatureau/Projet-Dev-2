@@ -45,7 +45,7 @@ class ListeDeChoix:
         if "caracteristique" in prerequis:
             carac_nom = prerequis["caracteristique"]
             carac_min = prerequis.get("valeur_min", 0)
-            if hero.competence.get(carac_nom, 0) < carac_min:
+            if hero.get_competence.get(carac_nom, 0) < carac_min:
                 return False
         
         # Vérifier affinité avec PNJ

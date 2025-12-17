@@ -67,13 +67,13 @@ class Hero:
 # --------------------------------------------
     def afficher_info(self):
         info = f"\n{'=' * 50}\n"
-        info += f"HÃ‰ROS: {self._nom}\n"
+        info += f"HÉROS: {self._nom}\n"
         info += f"{'=' * 50}\n"
         info += f"Classe: {self._classe}\n | "
         info += f"Force: {self._competence['force']} | "
         info += f"Intelligence: {self._competence['intelligence']} | "
         info += f"Charisme: {self._competence['charisme']}\n"
-        info += f"argent: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
+        info += f"Argent: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
         info += f"{'=' * 50}\n"
         return info
 
