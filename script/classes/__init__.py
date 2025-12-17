@@ -1,4 +1,6 @@
-from script.classes.inventaire import Inventaire
-from script.classes.hero import  Hero, choixclassehero, creationhero, nomhero, inventaireinit
-from script.classes.liste_de_choix import ListeDeChoix
-from script.classes.aventure import Aventure
+from .aventure import Aventure
+from .hero import Hero, creationhero, choixclassehero
+from .inventaire import Inventaire
+from .liste_de_choix import ListeDeChoix
+
+__all__ = ['Aventure', 'Hero', 'Inventaire', 'ListeDeChoix', 'creationhero', 'choixclassehero']

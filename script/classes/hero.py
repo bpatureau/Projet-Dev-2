@@ -1,11 +1,11 @@
-from script.classes.inventaire import Inventaire
+from .inventaire import Inventaire
 
 #Ensemble des variables globales
 listeClasse = ["Guerrier", "Barde", "Mage"]
 nomhero = {}
 inventaireinit = Inventaire()
 #--------------------------------------------
-# Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
+# Fonction de choix de classe de dÃ©part de l'instance de Hero, qui influence les compÃ©tences de dÃ©part
 def choixclassehero():
     choix = input("Entrez votre choix parmi Guerrier (a), Barde (b) et Mage (c): ")
     if choix == "a":
@@ -17,7 +17,7 @@ def choixclassehero():
     else:
         return choixclassehero()
 # --------------------------------------------
-# Fonction de création de perso Hero par un input pour le nom du hero
+# Fonction de crÃ©ation de perso Hero par un input pour le nom du hero
 def creationhero():
     nom = input("Entrez votre nom: ")
     if not nom:
@@ -31,10 +31,10 @@ class Hero:
     Personage
             type : class
             description :
-                Crée un nouveau personage en choisissant un nom et une classe de personnage.
+                CrÃ©e un nouveau personage en choisissant un nom et une classe de personnage.
             Variable :
                 - nom
-                - competence (force, charisme, intelligence et agilité), en fonction de la classe
+                - competence (force, charisme, intelligence et agilitÃ©), en fonction de la classe
                 - inventaire
     """
     def __init__(self, nominit :str , classeinit : str, inventaireinit):
@@ -67,7 +67,7 @@ class Hero:
 # --------------------------------------------
     def afficher_info(self):
         info = f"\n{'=' * 50}\n"
-        info += f"HÉROS: {self._nom}\n"
+        info += f"HÃ‰ROS: {self._nom}\n"
         info += f"{'=' * 50}\n"
         info += f"Classe: {self._classe}\n | "
         info += f"Force: {self._competence['force']} | "
@@ -81,12 +81,12 @@ class Hero:
         """
         Fonction de modification de competence de personnage en donnant le nom du personnage
             nom : str # le nom de l'instance
-            competence : str # le nom de la compétence à modifier
+            competence : str # le nom de la compÃ©tence Ã  modifier
             signe : bollean # augmenter ("+") ou diminuer ("-") une competence
             nbr : int # de combien augmenter/diminuer
         """
         if competence not in self._competence:
-            print(f"Erreur : La compétence '{competence}' n'existe pas.")
+            print(f"Erreur : La compÃ©tence '{competence}' n'existe pas.")
             return
         if signe == "+":
             self._competence[competence] += nbr

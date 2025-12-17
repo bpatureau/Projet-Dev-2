@@ -2,6 +2,16 @@ class Inventaire:
     def __init__(self):
         self.argent = 0
         self.loot = []
+    
+    @property
+    def or_(self):
+        """Alias pour argent (compatibilité)"""
+        return self.argent
+    
+    @or_.setter
+    def or_(self, valeur):
+        self.argent = valeur
+    
     def __str__(self):
         """
         Retourne l'affichage total de l'inventaire
@@ -18,6 +28,10 @@ class Inventaire:
             affichage += "  (vide)\n"
         affichage += f"{'=' * 50}\n"
         return affichage
+    
+    def afficher(self):
+        """Méthode pour afficher l'inventaire (appelée dans main.py)"""
+        return self.__str__()
 # -----------------------------------
     @property
     def get_argent(self):

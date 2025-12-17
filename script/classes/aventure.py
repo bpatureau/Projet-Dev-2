@@ -17,6 +17,33 @@ class Aventure:
         self.nodes={}
         self.win=False
         self.lose=False
+    
+    # Propriétés pour harmoniser les noms utilisés dans main.py
+    @property
+    def node_actuel(self):
+        """Alias pour node_courant"""
+        return self.node_courant
+    
+    @property
+    def historique(self):
+        """Alias pour historique_nodes"""
+        return self.historique_nodes
+    
+    @property
+    def pnj_affinites(self):
+        """Alias pour pnj"""
+        return self.pnj
+    
+    @property
+    def victoire(self):
+        """Alias pour win"""
+        return self.win
+    
+    @property
+    def defaite(self):
+        """Alias pour lose"""
+        return self.lose
+    
     def __str__(self):
         return f"""Bienvenu dans l'aventure {self.nom},
  le héros {self.hero}"""
@@ -77,6 +104,22 @@ class Aventure:
             else:
                 self.set_node_courant(choix["suivant"])
         return choix["consequence"]
+    
+    def demarrer(self):
+        """Démarre l'aventure"""
+        self.en_cours = True
+    
+    def terminer(self):
+        """Termine l'aventure"""
+        self.en_cours = False
+    
+    def charger_node(self, node_id):
+        """Charge un node comme node courant"""
+        return self.set_node_courant(node_id)
+    
+    def executer_choix(self, choix_index):
+        """Exécute un choix (wrapper pour faire_choix)"""
+        return self.faire_choix(choix_index)
 
 
 def creationAventure():
