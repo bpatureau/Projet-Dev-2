@@ -45,7 +45,7 @@ class ListeDeChoix:
         if "caracteristique" in prerequis:
             carac_nom = prerequis["caracteristique"]
             carac_min = prerequis.get("valeur_min", 0)
-            if hero.caracteristiques.get(carac_nom, 0) < carac_min:
+            if hero.get_competence.get(carac_nom, 0) < carac_min:
                 return False
         
         # Vérifier affinité avec PNJ
@@ -69,6 +69,12 @@ class ListeDeChoix:
         description += f"{'#'*60}\n\n"
         return description
     
+    @description.setter
+    def description(self, value):
+        if not isinstance(value, str):
+            raise TypeError(f"La description doit être une chaîne de caractères (str), pas {type(value).__name__}")
+        self.__description = value
+
     def afficher(self, hero, affinites):
         """Retourne l'affichage du node avec les choix disponibles"""
         affichage = f"{self.description}\n"
