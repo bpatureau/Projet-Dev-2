@@ -1,4 +1,4 @@
-from classes import Hero, ListeDeChoix, Aventure, creationhero, inventaireinit
+from classes import Hero, ListeDeChoix, Aventure, liste_de_choix
 import json
 import os
 from pathlib import Path
