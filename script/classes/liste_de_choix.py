@@ -115,8 +115,11 @@ class ListeDeChoix:
         affichage += "Que voulez-vous faire?\n"
         affichage += "-" * 50 + "\n"
         
-        for i, prop in enumerate(propositions_dispo, 1):
-            affichage += f"{i}. {prop['texte']}\n"
+        lignes = map(
+            lambda item: f"{item[0]}. {item[1]['texte']}\n",
+            enumerate(propositions_dispo, 1)
+        )
+        affichage += "".join(lignes)
         
         affichage += "-" * 50 + "\n"
         
