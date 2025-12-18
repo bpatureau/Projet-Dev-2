@@ -44,22 +44,22 @@ class TestHero:
         assert hero.get_competence["force"] == 0  # Ne peut pas être négatif
 #--------------------------------------------
 class TestChoixClasseHero:
-    @patch('script.classes.hero.input', return_value='a')
+    @patch('script.classes.hero.input', return_value='1')
     def test_choix_classe_guerrier(self, mock_input):
         classe = choixclassehero()
         assert classe == "Guerrier"
 
-    @patch('script.classes.hero.input', return_value='b')
+    @patch('script.classes.hero.input', return_value='2')
     def test_choix_classe_barde(self, mock_input):
         classe = choixclassehero()
         assert classe == "Barde"
 
-    @patch('script.classes.hero.input', return_value='c')
+    @patch('script.classes.hero.input', return_value='3')
     def test_choix_classe_detective(self, mock_input):
         classe = choixclassehero()
         assert classe == "Mage"
 
-    @patch('script.classes.hero.input', side_effect=['z', 'a'])
+    @patch('script.classes.hero.input', side_effect=['5', '1'])
     def test_choix_classe_invalide_puis_valide(self, mock_input):
         """
         Scénario :

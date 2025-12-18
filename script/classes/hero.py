@@ -7,12 +7,12 @@ inventaireinit = Inventaire()
 #--------------------------------------------
 # Fonction de choix de classe de dÃ©part de l'instance de Hero, qui influence les compÃ©tences de dÃ©part
 def choixclassehero():
-    choix = input("Entrez votre choix parmi Guerrier (a), Barde (b) et Mage (c): ")
-    if choix == "a":
+    choix = input("Entrez votre choix parmi Guerrier (1), Barde (2) et Mage (2): ")
+    if choix == "1":
         return listeClasse[0]
-    elif choix == "b":
+    elif choix == "2":
         return listeClasse[1]
-    elif choix == "c":
+    elif choix == "3":
         return listeClasse[2]
     else:
         return choixclassehero()
