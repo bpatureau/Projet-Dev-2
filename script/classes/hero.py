@@ -31,8 +31,8 @@ class Hero:
     Personage
             type : class
             description :
-                CrÃ©e un nouveau personage en choisissant un nom et une classe de personnage.
-            Variable :
+                Crée un nouveau personage en choisissant un nom et une classe de personnage.
+            Attributs:
                 - nom
                 - competence (force, charisme, intelligence et agilitÃ©), en fonction de la classe
                 - inventaire
@@ -79,11 +79,19 @@ class Hero:
 
     def modif_competence(self, competence, signe, nbr):
         """
-        Fonction de modification de competence de personnage en donnant le nom du personnage
-            nom : str # le nom de l'instance
-            competence : str # le nom de la compÃ©tence Ã  modifier
-            signe : bollean # augmenter ("+") ou diminuer ("-") une competence
-            nbr : int # de combien augmenter/diminuer
+        Fonction de modification de competence de personnage en donnant le nom de la competence, + ou - pour indiquer l'ajout
+        ou la diminution de la competence et nbr.
+
+        PRE
+        :param
+            - competence : str
+            - signe : str # augmenter ("+") ou diminuer ("-") une competence
+            - nbr : int
+        le paramètre competence existe
+
+        POST
+        :return None
+
         """
         if competence not in self._competence:
             print(f"Erreur : La compÃ©tence '{competence}' n'existe pas.")

@@ -1,8 +1,13 @@
-from pytest import raises
+import pytest
 from unittest.mock import patch
 from script.classes.hero import Hero, choixclassehero, creationhero, nomhero, inventaireinit
 
 class TestHero:
+    """
+    PRE
+    POST
+    """
+
     def test_creation_hero_guerrier(self):
         hero = Hero("Conan", "Guerrier", inventaireinit)
 
@@ -23,8 +28,11 @@ class TestHero:
         assert hero.get_nom == "Oudini"
         assert hero.get_classe == "Mage"
         assert hero.get_competence == {"force": 10, "charisme": 10, "intelligence": 20}
-
-    # --------------------------------------------
+# --------------------------------------------
+    """
+    PRE
+    POST
+    """
     def test_modif_competence_augmentation(self):
         hero = Hero("Conan", "Guerrier", inventaireinit)
         hero.modif_competence("force", "+", 3)
@@ -44,6 +52,10 @@ class TestHero:
         assert hero.get_competence["force"] == 0  # Ne peut pas être négatif
 #--------------------------------------------
 class TestChoixClasseHero:
+    """
+    PRE
+    POST
+    """
     @patch('script.classes.hero.input', return_value='1')
     def test_choix_classe_guerrier(self, mock_input):
         classe = choixclassehero()
@@ -74,12 +86,14 @@ class TestChoixClasseHero:
 
 class TestCreationHero:
     """
-    test qui crée plusieurs hero
+    Test qui crée plusieurs hero
+    PRE
+    POST
     """
     @patch('script.classes.hero.input', return_value='Merlin')
     @patch('script.classes.hero.choixclassehero', return_value='Mage')
     def test_creation_hero_fonction(self, mock_choix, mock_input):
-        nomhero.clear()  #enlève tous les héros cré précédemment
+        nomhero.clear()  #enlève tous les héros crée précédemment
 
         hero = creationhero()
 
@@ -91,7 +105,7 @@ class TestCreationHero:
     @patch('script.classes.hero.input', return_value='Lancelot')
     @patch('script.classes.hero.choixclassehero', return_value='Guerrier')
     def test_creation_hero_retour_instance(self, mock_choix, mock_input):
-        nomhero.clear() #enlève tous les héros cré précédemment
+        nomhero.clear() #enlève tous les héros crée précédemment
 
         hero = creationhero()
         assert isinstance(hero, Hero)

@@ -1,5 +1,5 @@
 import pytest
-from classes.liste_de_choix import ListeDeChoix
+from script.classes.liste_de_choix import ListeDeChoix
 
 class InventaireTest:
     """Classe pour simuler un inventaire"""
