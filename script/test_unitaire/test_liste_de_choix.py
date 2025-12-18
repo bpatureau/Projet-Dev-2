@@ -52,3 +52,74 @@ class TestInit:
         assert node1.id == "node-1"
         assert node2.id == "node_2"
         assert node3.id == "Node123"
+class TestAjouterProposition:
+    """Tests de la méthode ajouter_proposition"""
+    
+    def test_ajout_proposition_valide(self):
+        node = ListeDeChoix("test", "Test")
+        node.ajouter_proposition(
+            texte="Aller à gauche",
+            consequence="Vous allez à gauche"
+        )
+        
+        assert len(node.propositions) == 1
+        assert node.propositions[0]["texte"] == "Aller à gauche"
+        assert node.propositions[0]["consequence"] == "Vous allez à gauche"
+    
+    def test_ajout_proposition_avec_prerequis(self):
+        node = ListeDeChoix("test", "Test")
+        node.ajouter_proposition(
+            texte="Utiliser clé",
+            consequence="La porte s'ouvre",
+            prerequis={"objet": "clé"}
+        )
+        
+        assert node.propositions[0]["prerequis"] == {"objet": "clé"}
+    
+    def test_ajout_proposition_avec_defaite(self):
+        node = ListeDeChoix("test", "Test")
+        node.ajouter_proposition(
+            texte="Abandonner",
+            consequence="Vous abandonnez",
+            defaite=True
+        )
+        
+        assert node.propositions[0]["defaite"] is True
+    
+    def test_texte_vide_leve_exception(self):
+        """Test : Texte vide doit lever ValueError"""
+        node = ListeDeChoix("test", "Test")
+        
+        with pytest.raises(ValueError, match="texte.*non vide"):
+            node.ajouter_proposition(
+                texte="",
+                consequence="Test"
+            )
+    
+    def test_consequence_vide(self):
+        node = ListeDeChoix("test", "Test")
+        
+        with pytest.raises(ValueError, match="conséquence.*non vide"):
+            node.ajouter_proposition(
+                texte="Test",
+                consequence=""
+            )
+    
+    def test_defaite_non_booleen(self):
+        node = ListeDeChoix("test", "Test")
+        
+        with pytest.raises(ValueError, match="booléen"):
+            node.ajouter_proposition(
+                texte="Test",
+                consequence="Test",
+                defaite="oui"
+            )
+    
+    def test_ajout_multiple_propositions(self):
+        node = ListeDeChoix("test", "Test")
+        
+        node.ajouter_proposition("Choix 1", "Conséquence 1")
+        node.ajouter_proposition("Choix 2", "Conséquence 2")
+        node.ajouter_proposition("Choix 3", "Conséquence 3")
+        
+        assert len(node.propositions) == 3
