@@ -1,9 +1,12 @@
+import re
 class ListeDeChoix:
     """Classe représentant un node de l'histoire avec ses choix"""
     
     def __init__(self, id_node, description):
         if not id_node:
             raise ValueError("L'id_node ne peut pas être vide")
+        if re.search(r'[\s\'"\\]', str(id_node)):
+                raise ValueError("L'id_node ne peut pas contenir d'espaces, quotes ou backslashes")
         if not isinstance(description, str):
             raise TypeError(f"La description doit être une chaîne de caractères (str), pas {type(description).__name__}")
         
