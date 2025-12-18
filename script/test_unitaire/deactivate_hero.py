@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch
-from script.classes.hero import Hero, choixclassehero, creationhero, nomhero, inventaireinit
+from classes.hero import Hero, choixclassehero, creationhero, nomhero, inventaireinit
 
 class TestHero:
     """
@@ -56,22 +56,22 @@ class TestChoixClasseHero:
     PRE
     POST
     """
-    @patch('script.classes.hero.input', return_value='1')
+    @patch('classes.hero.input', return_value='1')
     def test_choix_classe_guerrier(self, mock_input):
         classe = choixclassehero()
         assert classe == "Guerrier"
 
-    @patch('script.classes.hero.input', return_value='2')
+    @patch('classes.hero.input', return_value='2')
     def test_choix_classe_barde(self, mock_input):
         classe = choixclassehero()
         assert classe == "Barde"
 
-    @patch('script.classes.hero.input', return_value='3')
+    @patch('classes.hero.input', return_value='3')
     def test_choix_classe_detective(self, mock_input):
         classe = choixclassehero()
         assert classe == "Mage"
 
-    @patch('script.classes.hero.input', side_effect=['5', '1'])
+    @patch('classes.hero.input', side_effect=['5', '1'])
     def test_choix_classe_invalide_puis_valide(self, mock_input):
         """
         Scénario :
@@ -90,8 +90,8 @@ class TestCreationHero:
     PRE
     POST
     """
-    @patch('script.classes.hero.input', return_value='Merlin')
-    @patch('script.classes.hero.choixclassehero', return_value='Mage')
+    @patch('classes.hero.input', return_value='Merlin')
+    @patch('classes.hero.choixclassehero', return_value='Mage')
     def test_creation_hero_fonction(self, mock_choix, mock_input):
         nomhero.clear()  #enlève tous les héros crée précédemment
 
@@ -102,8 +102,8 @@ class TestCreationHero:
         assert "Merlin" in nomhero
         assert nomhero["Merlin"] == hero
 
-    @patch('script.classes.hero.input', return_value='Lancelot')
-    @patch('script.classes.hero.choixclassehero', return_value='Guerrier')
+    @patch('classes.hero.input', return_value='Lancelot')
+    @patch('classes.hero.choixclassehero', return_value='Guerrier')
     def test_creation_hero_retour_instance(self, mock_choix, mock_input):
         nomhero.clear() #enlève tous les héros crée précédemment
 

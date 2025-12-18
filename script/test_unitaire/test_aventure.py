@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch
 
-from script.classes.aventure import Aventure
+from classes.aventure import Aventure
 
 class TestAventure:
     def test_creation_aventure(self):
