@@ -63,8 +63,8 @@ class TestChoixClasseHero:
     def test_choix_classe_invalide_puis_valide(self, mock_input):
         """
         Scénario :
-        1. L'utilisateur tape 'z' (invalide)
-        2. L'utilisateur tape 'a' (valide)
+        1. L'utilisateur tape '5' (invalide)
+        2. L'utilisateur tape '1' (valide)
         call_count vérifie qu'il y a bien eu 2 tests
         """
         classe = choixclassehero()

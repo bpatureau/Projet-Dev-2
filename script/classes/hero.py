@@ -34,7 +34,7 @@ class Hero:
                 Crée un nouveau personage en choisissant un nom et une classe de personnage.
             Variable :
                 - nom
-                - competence (force, charisme, intelligence et agilité), en fonction de la classe
+                - competence (force, charisme, intelligence), en fonction de la classe
                 - inventaire
     """
     def __init__(self, nominit :str , classeinit : str, inventaireinit):
