@@ -1,4 +1,4 @@
-from classes import Hero, ListeDeChoix, Aventure, creationhero, inventaireinit
+from classes import Hero, ListeDeChoix, Aventure, creationhero
 import json
 import os
 from pathlib import Path
@@ -195,7 +195,7 @@ class InterfaceCLI:
             print("\n" + "=" * 60)
             print("VICTOIRE!")
             print("=" * 60)
-            print(f"{self.aventure.hero.nom} a triomphé de l'aventure!")
+            print(f"{self.aventure.hero._nom} a triomphé de l'aventure!")
             print(f"Nodes explorés: {len(self.aventure.historique)}")
             print("=" * 60 + "\n")
 
@@ -203,7 +203,7 @@ class InterfaceCLI:
             print("\n" + "=" * 60)
             print("DÉFAITE")
             print("=" * 60)
-            print(f"{self.aventure.hero.nom} n'a pas survécu à l'aventure...")
+            print(f"{self.aventure.hero._nom} n'a pas survécu à l'aventure...")
             print(f"Nodes explorés: {len(self.aventure.historique)}")
             print("=" * 60 + "\n")
 
@@ -233,5 +233,5 @@ def main():
     """
     interface = InterfaceCLI()
     interface.menu_principal()
-if __name__ == '__ main __' :
+if __name__ == '__main__':
     main()
