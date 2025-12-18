@@ -1,4 +1,4 @@
-from script.classes.inventaire import Inventaire
+from .inventaire import Inventaire
 
 #Ensemble des variables globales
 listeClasse = ["Guerrier", "Barde", "Mage"]
