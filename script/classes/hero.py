@@ -105,7 +105,6 @@ class Hero:
             - competence est un string et existe dans l'attribut objet _competence de Hero
             - signe est un string et a deux valeurs possible + et -
             - nbr est un integer
-
         POST
             - assigne la competence modifiée à l'attribut objet _competence de Hero et peut pas être en dessous de zero
         """

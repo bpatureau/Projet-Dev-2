@@ -1,4 +1,3 @@
-from .liste_de_choix import *
 from .hero import *
 import re
 
