@@ -8,7 +8,7 @@ Ce document explique comment créer vos propres aventures au format JSON.
 {
   "nom": "Nom de l'aventure",
   "description": "Description courte de l'aventure",
-  "or_depart": 0,
+  "argent_depart": 0,
   "node_depart": "id_du_premier_node",
   "pnj": [...],
   "nodes": [...]
@@ -23,13 +23,13 @@ Le nom de l'aventure qui sera affiché dans le menu.
 ### description (string, requis)
 Une courte description de l'aventure pour aider le joueur à choisir.
 
-### or_depart (number, optionnel, défaut: 0)
-La quantité d'or que le héros possède au début de l'aventure.
+### argent_depart (number, optionnel, défaut: 0)
+La quantité d'argent que le héros possède au début de l'aventure.
 
 **Exemples:**
-- `"or_depart": 0` - Pas d'or au départ (aventures simples)
-- `"or_depart": 50` - 50 pièces d'or (pour aventures avec économie)
-- `"or_depart": 100` - 100 pièces d'or (aventures riches)
+- `"argent_depart": 0` - Pas d'argent au départ (aventures simples)
+- `"argent_depart": 50` - 50 pièces d'argent (pour aventures avec économie)
+- `"argent_depart": 100` - 100 pièces d'argent (aventures riches)
 
 ### node_depart (string, requis)
 L'ID du node par lequel commence l'aventure.
@@ -133,7 +133,7 @@ Le joueur doit avoir une affinité minimale avec un PNJ:
 Le joueur doit avoir une quantité minimale d'or:
 ```json
 "prerequis": {
-  "or_min": 100
+  "argent_min": 100
 }
 ```
 
@@ -148,7 +148,7 @@ Le joueur doit avoir une quantité minimale d'or:
 {
   "nom": "La Caverne Sombre",
   "description": "Explorez une caverne mystérieuse",
-  "or_depart": 0,
+  "argent_depart": 0,
   "node_depart": "entree",
   "pnj": [],
   "nodes": [

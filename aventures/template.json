@@ -1,7 +1,7 @@
 {
   "nom": "Nom de votre aventure",
   "description": "Description courte de votre aventure",
-  "or_depart": 0,
+  "argent_depart": 0,
   "node_depart": "debut",
   "pnj": [
     {

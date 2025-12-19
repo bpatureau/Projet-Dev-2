@@ -1,5 +1,5 @@
 from .inventaire import Inventaire
-
+import re
 #Ensemble des variables globales
 listeClasse = ["Guerrier", "Barde", "Mage"]
 nomhero = {}
@@ -8,6 +8,10 @@ inventaireinit = Inventaire()
 # Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
 def choixclassehero():
     choix = input("Entrez votre choix parmi Guerrier (1), Barde (2) et Mage (2): ")
+    if not re.match(r"^[1-9]+$", choix):
+        print("Nom de PNJ invalide.")
+        return choixclassehero()
+
     if choix == "1":
         return listeClasse[0]
     elif choix == "2":
@@ -92,7 +96,7 @@ class Hero:
         info += f"Force: {self._competence['force']} | "
         info += f"Intelligence: {self._competence['intelligence']} | "
         info += f"Charisme: {self._competence['charisme']}\n"
-        info += f"argent: {self._inventaire.or_} | Objets: {len(self._inventaire.loot)}\n"
+        info += f"argent: {self._inventaire.get_argent} | Objets: {len(self._inventaire.loot)}\n"
         info += f"{'=' * 50}\n"
         return info
 
