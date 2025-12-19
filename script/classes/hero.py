@@ -5,19 +5,19 @@ listeClasse = ["Guerrier", "Barde", "Mage"]
 nomhero = {}
 inventaireinit = Inventaire()
 #--------------------------------------------
-# Fonction de choix de classe de dÃ©part de l'instance de Hero, qui influence les compÃ©tences de dÃ©part
+# Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
 def choixclassehero():
-    choix = input("Entrez votre choix parmi Guerrier (a), Barde (b) et Mage (c): ")
-    if choix == "a":
+    choix = input("Entrez votre choix parmi Guerrier (1), Barde (2) et Mage (2): ")
+    if choix == "1":
         return listeClasse[0]
-    elif choix == "b":
+    elif choix == "2":
         return listeClasse[1]
-    elif choix == "c":
+    elif choix == "3":
         return listeClasse[2]
     else:
         return choixclassehero()
 # --------------------------------------------
-# Fonction de crÃ©ation de perso Hero par un input pour le nom du hero
+# Fonction de création de perso Hero par un input pour le nom du hero
 def creationhero():
     nom = input("Entrez votre nom: ")
     if not nom:
@@ -30,25 +30,44 @@ class Hero:
     """
     Personage
             type : class
-            description :
-                CrÃ©e un nouveau personage en choisissant un nom et une classe de personnage.
-            Variable :
-                - nom
-                - competence (force, charisme, intelligence et agilitÃ©), en fonction de la classe
-                - inventaire
+            desc :
+                Crée un nouveau personage en choisissant un nom et une classe de personnage.
+            Attributs :
+                - _nom
+                - _classe
+                - _competence (force, charisme, intelligence), en fonction de la classe
+                - _inventaire
     """
     def __init__(self, nominit :str , classeinit : str, inventaireinit):
-        self._nom = nominit
-        self._classe = classeinit
+        """
+        PRE :
+            - nominit est un string
+            - classinit est un string contenant soit Guerrier, Barde ou Mage
+            - inventaireinit est une instance de classe
+        POST :
+            - assigne à l'instance de Hero les attributs _nom, _classe, _competence et _inventaire
+        """
+        if not isinstance(nominit, str):
+            raise TypeError("nominit n'est pas un string")
+        else:
+            self._nom = nominit
+
+        if not isinstance(classeinit, str):
+            raise TypeError("classeinit n'est pas un string")
+        else:
+            self._classe = classeinit
+
+        self._inventaire = inventaireinit
+
         if classeinit == 'Guerrier':
             self._competence = {"force": 20, "charisme": 10, "intelligence": 10}
         elif classeinit == 'Barde':
             self._competence = {"force": 10, "charisme": 20, "intelligence": 10}
-        else:  # Mage
+        elif classeinit == 'Mage':
             self._competence = {"force": 10, "charisme": 10, "intelligence": 20}
-
-        self.inventaire = inventaireinit
-
+        else:
+            raise ValueError("Classe invalide")
+    # --------------------------------------------
     @property #getter
     def get_nom(self):
         return self._nom
@@ -60,11 +79,11 @@ class Hero:
         return self._classe
     @property #getter
     def get_inventaire(self):
-        return self.inventaire
+        return self._inventaire
     @get_competence.setter
     def get_competence(self, competence):
         self._competence = competence
-# --------------------------------------------
+    # --------------------------------------------
     def afficher_info(self):
         info = f"\n{'=' * 50}\n"
         info += f"HÉROS: {self._nom}\n"
@@ -73,23 +92,28 @@ class Hero:
         info += f"Force: {self._competence['force']} | "
         info += f"Intelligence: {self._competence['intelligence']} | "
         info += f"Charisme: {self._competence['charisme']}\n"
-        info += f"Argent: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
+        info += f"argent: {self._inventaire.or_} | Objets: {len(self._inventaire.loot)}\n"
         info += f"{'=' * 50}\n"
         return info
 
     def modif_competence(self, competence, signe, nbr):
         """
-        Fonction de modification de competence de personnage en donnant le nom du personnage
-            nom : str # le nom de l'instance
-            competence : str # le nom de la compÃ©tence Ã  modifier
-            signe : bollean # augmenter ("+") ou diminuer ("-") une competence
-            nbr : int # de combien augmenter/diminuer
+        Fonction de modification de competence de personnage en donnant le nom de la competence, + ou - pour indiquer l'ajout
+        ou la diminution de la competence et nbr.
+
+        PRE
+            - competence est un string et existe dans l'attribut objet _competence de Hero
+            - signe est un string et a deux valeurs possible + et -
+            - nbr est un integer
+        POST
+            - assigne la competence modifiée à l'attribut objet _competence de Hero et peut pas être en dessous de zero
         """
         if competence not in self._competence:
-            print(f"Erreur : La compÃ©tence '{competence}' n'existe pas.")
-            return
+           raise ValueError(f"Erreur : La compétence '{competence}' n'existe pas.")
         if signe == "+":
             self._competence[competence] += nbr
-        else: #max(0, résultat)-> le plus grand des deux est prix entre 0 et le résultat du calcul, donc 0 est le min
+        elif signe == "-":
             self._competence[competence] = max(0, self._competence[competence] - nbr)
+        else:
+            raise ValueError("signe est invalide")
 #--------------------------------------------
