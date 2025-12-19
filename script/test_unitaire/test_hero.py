@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch
 from classes.hero import Hero, choixclassehero, creationhero, nomhero, inventaireinit
 
