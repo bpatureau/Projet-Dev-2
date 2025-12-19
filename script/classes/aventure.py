@@ -1,7 +1,5 @@
-from .liste_de_choix import *
-from .hero import *
+from .hero import creationhero
 import re
-
 
 class pnjNonExistant(Exception):
     pass
@@ -45,29 +43,37 @@ class Aventure:
         return self.lose
     
     def __str__(self):
-        return f"""Bienvenu dans l'aventure {self.nom},
- le héros {self.hero}"""
+        return f"""
+        Bienvenu dans l'aventure {self.nom},
+        le héros {self.hero}
+        """
     def ajouter_pnj(self, nom_pnj: str, affinite_initiale = 0):
         if not re.match(r"^[A-Za-z]+$", nom_pnj):
             print("Nom de PNJ invalide.")
             return
         self.pnj[nom_pnj] = max(0, min(100, affinite_initiale))
+
     def switchAdventureState(self):
         self.en_cours = not self.en_cours
+
     def affinite_pnj(self, nom_pnj: str, variation: int):
         if nom_pnj not in self.pnj:
             raise pnjNonExistant(f"PNJ '{nom_pnj}' non trouvé dans l'aventure.")
         nouvelle_affinite = self.pnj[nom_pnj] + variation
         self.pnj[nom_pnj] = max(0, min(100, nouvelle_affinite))
+
     def afficher_affinites(self):
         for nom_pnj, affinite in self.pnj.items():
             print(f"{nom_pnj}: {affinite}")
+
     def afficher_affinite_sup(self, affinite_min: int):
         pnj_amis = filter(lambda p: p[1] >= affinite_min, self.pnj.items())
         noms = map(lambda p: p[0], pnj_amis)
         return(list(noms))
+
     def get_pnj(self):
         return self.pnj
+
     @property
     def hero(self):
         return self._hero
@@ -120,8 +126,8 @@ class Aventure:
     def executer_choix(self, choix_index):
         """Exécute un choix (wrapper pour faire_choix)"""
         return self.faire_choix(choix_index)
-
-
+# --------------------------------------------
+# test de creation aventure
 def creationAventure():
     nomAventure = input("Entrez le nom de votre aventure: ")
     hero = creationhero()

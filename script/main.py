@@ -1,6 +1,5 @@
-from classes import Hero, ListeDeChoix, Aventure, creationhero
+from classes import ListeDeChoix, Aventure, creationhero
 import json
-import os
 from pathlib import Path
 
 class InterfaceCLI:
