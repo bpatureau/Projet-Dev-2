@@ -1,7 +1,7 @@
 {
   "nom": "La Forêt Enchantée",
   "description": "Sauvez une princesse prisonnière d'une sorcière dans une forêt magique",
-  "or_depart": 0,
+  "argent_depart": 0,
   "node_depart": "orée_foret",
   "pnj": [
     {
