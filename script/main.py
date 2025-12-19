@@ -1,7 +1,6 @@
 from classes import ListeDeChoix, Aventure, creationhero
 import json
 from pathlib import Path
-
 class InterfaceCLI:
 
     def __init__(self):
@@ -93,8 +92,7 @@ class InterfaceCLI:
 
             self.aventure.nom = data.get("nom", "Aventure Sans Nom")
 
-            or_depart = data.get("or_depart", 0)
-            self.aventure.hero.inventaire.or_ = or_depart
+            self.aventure.hero.get_inventaire.get_argent = data.get("argent_depart", 0)
 
             for pnj_data in data.get("pnj", []):
                 nom = pnj_data.get("nom")

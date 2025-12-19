@@ -39,14 +39,14 @@ aventures/                     # Dossier contenant les aventures
 Chaque héros possède :
 - **Nom** : Choisi par le joueur
 - **Caractéristiques** : Force (10), Intelligence (10), Charisme (10)
-- **Inventaire** : Or et objets collectés
+- **Inventaire** : Argent et objets collectés
 
 ### Système de prérequis
 Certains choix peuvent être verrouillés et nécessiter :
 - Un **objet spécifique** dans l'inventaire
 - Une **caractéristique minimale** (ex: Intelligence ≥ 8)
 - Une **affinité minimale** avec un PNJ
-- Une **quantité d'or minimale**
+- Une **quantité d'argent minimale**
 
 Les choix verrouillés ne sont pas affichés au joueur.
 
@@ -208,7 +208,7 @@ Modifiez-les dans les classes pour changer l'apparence du jeu.
 // Affinité PNJ minimale
 "prerequis": {"pnj": "Elfe", "affinite_min": 60}
 
-// Or minimum
+// Argent minimum
 "prerequis": {"or_min": 500}
 
 // Pas de prérequis

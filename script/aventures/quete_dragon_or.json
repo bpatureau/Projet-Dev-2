@@ -1,7 +1,7 @@
 {
   "nom": "La Quête du Dragon d'Or",
   "description": "Une aventure complexe avec de nombreux embranchements et choix stratégiques",
-  "or_depart": 50,
+  "argent_depart": 50,
   "node_depart": "village",
   "pnj": [
     {
@@ -41,7 +41,7 @@
           "consequence": "Vous entrez dans la forge. Le forgeron, un homme massif au tablier de cuir, vous présente une magnifique épée en acier. 'Elle te coûtera 30 pièces d'or, mais elle vaut chaque pièce!' Vous achetez l'épée et sentez immédiatement sa qualité.",
           "suivant": "village_avec_epee",
           "prerequis": {
-            "or_min": 30
+            "argent_min": 30
           }
         },
         {
@@ -49,7 +49,7 @@
           "consequence": "Vous entrez dans la taverne enfumée. Le tavernier vous sert une chope de bière fraîche. En discutant avec lui, vous apprenez des informations précieuses sur les habitudes du dragon. Votre charisme augmente de 2 points grâce à cette interaction sociale!",
           "suivant": "village_apres_taverne",
           "prerequis": {
-            "or_min": 10
+            "argent_min": 10
           }
         },
         {
@@ -57,7 +57,7 @@
           "consequence": "Vous montez les marches de la maison du sage. Le vieil homme vous accueille avec un sourire mystérieux. 'Je peux t'enseigner un sort de protection, jeune aventurier. Pour 40 pièces d'or.' Vous acceptez et passez plusieurs heures à apprendre. Votre intelligence augmente de 3 points!",
           "suivant": "village_apres_sage",
           "prerequis": {
-            "or_min": 40
+            "argent_min": 40
           }
         }
       ]
@@ -76,7 +76,7 @@
           "consequence": "Le forgeron vous accueille chaleureusement. Vous achetez son épée en acier pour 30 pièces d'or. 'Avec ça et les conseils des villageois, tu as une vraie chance!' dit-il.",
           "suivant": "village_avec_epee_et_info",
           "prerequis": {
-            "or_min": 30
+            "argent_min": 30
           }
         },
         {
@@ -84,7 +84,7 @@
           "consequence": "Le tavernier vous sert avec enthousiasme. Entre deux gorgées, vous discutez stratégie. Votre charisme augmente de 2 points!",
           "suivant": "village_apres_taverne_et_villageois",
           "prerequis": {
-            "or_min": 10
+            "argent_min": 10
           }
         },
         {
@@ -92,7 +92,7 @@
           "consequence": "Le sage vous enseigne un puissant sort de protection. Combiné aux informations des villageois, vous vous sentez prêt! Votre intelligence augmente de 3 points!",
           "suivant": "village_apres_sage_et_villageois",
           "prerequis": {
-            "or_min": 40
+            "argent_min": 40
           }
         }
       ]
@@ -116,7 +116,7 @@
           "consequence": "Le tavernier admire votre épée. Autour d'une bière, vous partagez vos plans. Votre charisme augmente de 2 points!",
           "suivant": "village_avec_epee_et_taverne",
           "prerequis": {
-            "or_min": 10
+            "argent_min": 10
           }
         },
         {
@@ -124,7 +124,7 @@
           "consequence": "Le sage vous regarde tristement. 'Tu n'as que 20 pièces, mon ami. J'ai besoin de 40 pour t'enseigner. Reviens avec plus d'or ou pars avec ton épée!'",
           "suivant": "village_avec_epee",
           "prerequis": {
-            "or_min": 40
+            "argent_min": 40
           }
         }
       ]
@@ -143,7 +143,7 @@
           "consequence": "Une dernière tournée pour vous donner du courage! Le tavernier vous souhaite bonne chance. Votre charisme augmente de 2 points!",
           "suivant": "village_epee_info_taverne",
           "prerequis": {
-            "or_min": 10
+            "argent_min": 10
           }
         }
       ]
@@ -167,7 +167,7 @@
           "consequence": "Le forgeron sourit. 'Une épée ET du courage liquide? Excellente combinaison!' Vous achetez l'épée.",
           "suivant": "village_avec_epee_et_taverne",
           "prerequis": {
-            "or_min": 30
+            "argent_min": 30
           }
         },
         {
@@ -175,7 +175,7 @@
           "consequence": "Le sage renifle. 'Tu sens la bière, mais ton esprit est clair. Je vais t'enseigner.' Votre intelligence augmente de 3 points!",
           "suivant": "village_apres_sage_et_taverne",
           "prerequis": {
-            "or_min": 40
+            "argent_min": 40
           }
         }
       ]
@@ -215,7 +215,7 @@
           "consequence": "Le tavernier est émerveillé par votre magie. Vous échangez connaissances contre bière. Charisme +2!",
           "suivant": "village_apres_sage_et_taverne",
           "prerequis": {
-            "or_min": 10
+            "argent_min": 10
           }
         }
       ]
@@ -234,7 +234,7 @@
           "consequence": "Avec l'épée en plus de toutes vos connaissances, vous êtes redoutable!",
           "suivant": "village_epee_info_taverne",
           "prerequis": {
-            "or_min": 30
+            "argent_min": 30
           }
         },
         {
@@ -242,7 +242,7 @@
           "consequence": "Le sage complète votre formation. Information + magie = puissance! Intelligence +3!",
           "suivant": "village_sage_info_complete",
           "prerequis": {
-            "or_min": 40
+            "argent_min": 40
           }
         }
       ]
@@ -272,7 +272,7 @@
           "consequence": "Une dernière bière pour célébrer votre préparation! Charisme +2!",
           "suivant": "village_sage_info_complete",
           "prerequis": {
-            "or_min": 10
+            "argent_min": 10
           }
         }
       ]
