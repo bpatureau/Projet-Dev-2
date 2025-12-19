@@ -1,6 +1,5 @@
-from pytest import raises
 from unittest.mock import patch
-from script.classes.hero import Hero, choixclassehero, creationhero, nomhero, inventaireinit
+from classes.hero import Hero, choixclassehero, creationhero, nomhero, inventaireinit
 
 class TestHero:
     def test_creation_hero_guerrier(self):
@@ -23,8 +22,7 @@ class TestHero:
         assert hero.get_nom == "Oudini"
         assert hero.get_classe == "Mage"
         assert hero.get_competence == {"force": 10, "charisme": 10, "intelligence": 20}
-
-    # --------------------------------------------
+# --------------------------------------------
     def test_modif_competence_augmentation(self):
         hero = Hero("Conan", "Guerrier", inventaireinit)
         hero.modif_competence("force", "+", 3)
@@ -44,27 +42,27 @@ class TestHero:
         assert hero.get_competence["force"] == 0  # Ne peut pas être négatif
 #--------------------------------------------
 class TestChoixClasseHero:
-    @patch('script.classes.hero.input', return_value='a')
+    @patch('classes.hero.input', return_value='1')
     def test_choix_classe_guerrier(self, mock_input):
         classe = choixclassehero()
         assert classe == "Guerrier"
 
-    @patch('script.classes.hero.input', return_value='b')
+    @patch('classes.hero.input', return_value='2')
     def test_choix_classe_barde(self, mock_input):
         classe = choixclassehero()
         assert classe == "Barde"
 
-    @patch('script.classes.hero.input', return_value='c')
+    @patch('classes.hero.input', return_value='3')
     def test_choix_classe_detective(self, mock_input):
         classe = choixclassehero()
         assert classe == "Mage"
 
-    @patch('script.classes.hero.input', side_effect=['z', 'a'])
+    @patch('classes.hero.input', side_effect=['5', '1'])
     def test_choix_classe_invalide_puis_valide(self, mock_input):
         """
         Scénario :
-        1. L'utilisateur tape 'z' (invalide)
-        2. L'utilisateur tape 'a' (valide)
+        1. L'utilisateur tape '5' (invalide)
+        2. L'utilisateur tape '1' (valide)
         call_count vérifie qu'il y a bien eu 2 tests
         """
         classe = choixclassehero()
@@ -74,12 +72,12 @@ class TestChoixClasseHero:
 
 class TestCreationHero:
     """
-    test qui crée plusieurs hero
+    Test qui crée plusieurs hero
     """
-    @patch('script.classes.hero.input', return_value='Merlin')
-    @patch('script.classes.hero.choixclassehero', return_value='Mage')
+    @patch('classes.hero.input', return_value='Merlin')
+    @patch('classes.hero.choixclassehero', return_value='Mage')
     def test_creation_hero_fonction(self, mock_choix, mock_input):
-        nomhero.clear()  #enlève tous les héros cré précédemment
+        nomhero.clear()  #enlève tous les héros crée précédemment
 
         hero = creationhero()
 
@@ -88,10 +86,10 @@ class TestCreationHero:
         assert "Merlin" in nomhero
         assert nomhero["Merlin"] == hero
 
-    @patch('script.classes.hero.input', return_value='Lancelot')
-    @patch('script.classes.hero.choixclassehero', return_value='Guerrier')
+    @patch('classes.hero.input', return_value='Lancelot')
+    @patch('classes.hero.choixclassehero', return_value='Guerrier')
     def test_creation_hero_retour_instance(self, mock_choix, mock_input):
-        nomhero.clear() #enlève tous les héros cré précédemment
+        nomhero.clear() #enlève tous les héros crée précédemment
 
         hero = creationhero()
         assert isinstance(hero, Hero)
