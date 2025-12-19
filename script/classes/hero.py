@@ -38,6 +38,10 @@ class Hero:
                 - inventaire
     """
     def __init__(self, nominit :str , classeinit : str, inventaireinit):
+        """
+        PRE
+        POST
+        """
         self._nom = nominit
         self._classe = classeinit
         if classeinit == 'Guerrier':

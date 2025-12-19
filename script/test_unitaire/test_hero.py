@@ -3,11 +3,6 @@ from unittest.mock import patch
 from classes.hero import Hero, choixclassehero, creationhero, nomhero, inventaireinit
 
 class TestHero:
-    """
-    PRE
-    POST
-    """
-
     def test_creation_hero_guerrier(self):
         hero = Hero("Conan", "Guerrier", inventaireinit)
 
@@ -29,10 +24,6 @@ class TestHero:
         assert hero.get_classe == "Mage"
         assert hero.get_competence == {"force": 10, "charisme": 10, "intelligence": 20}
 # --------------------------------------------
-    """
-    PRE
-    POST
-    """
     def test_modif_competence_augmentation(self):
         hero = Hero("Conan", "Guerrier", inventaireinit)
         hero.modif_competence("force", "+", 3)
@@ -52,10 +43,6 @@ class TestHero:
         assert hero.get_competence["force"] == 0  # Ne peut pas être négatif
 #--------------------------------------------
 class TestChoixClasseHero:
-    """
-    PRE
-    POST
-    """
     @patch('classes.hero.input', return_value='1')
     def test_choix_classe_guerrier(self, mock_input):
         classe = choixclassehero()
@@ -87,8 +74,6 @@ class TestChoixClasseHero:
 class TestCreationHero:
     """
     Test qui crée plusieurs hero
-    PRE
-    POST
     """
     @patch('classes.hero.input', return_value='Merlin')
     @patch('classes.hero.choixclassehero', return_value='Mage')
