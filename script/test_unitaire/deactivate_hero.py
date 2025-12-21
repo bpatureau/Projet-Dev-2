@@ -1,91 +1,98 @@
-import pytest
+from pytest import raises
 from unittest.mock import patch
-from ..classes.hero import Hero, choixclassehero, creationhero, nomhero
+from script.classes.hero import Hero, choixclassehero, creationhero, nomhero, inventaireinit
 
 class TestHero:
-    def test_creation_hero_inspecteur(self):
-        hero = Hero("Sherlock", "Inspecteur")
+    def test_creation_hero_guerrier(self):
+        hero = Hero("Conan", "Guerrier", inventaireinit)
 
-        assert hero.getnom == "Sherlock"
-        assert hero.getclasse == "Inspecteur"
-        assert hero.getcompetence == {"force": 0, "charisme": 1, "intelligence": 2, "agilité": 1}
+        assert hero.get_nom == "Conan"
+        assert hero.get_classe == "Guerrier"
+        assert hero.get_competence == {"force": 20, "charisme": 10, "intelligence": 10}
 
-    def test_creation_hero_commissaire(self):
-        hero = Hero("Magret", "Commissaire")
+    def test_creation_hero_barde(self):
+        hero = Hero("Magret", "Barde", inventaireinit)
 
-        assert hero.getnom == "Magret" #coin coin commissaire
-        assert hero.getclasse == "Commissaire"
-        assert hero.getcompetence == {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
+        assert hero.get_nom == "Magret"
+        assert hero.get_classe == "Barde"
+        assert hero.get_competence == {"force": 10, "charisme": 20, "intelligence": 10}
 
     def test_creation_hero_detective(self):
-        hero = Hero("Poirot", "Détective")
+        hero = Hero("Oudini", "Mage", inventaireinit)
 
-        assert hero.getnom == "Poirot"
-        assert hero.getclasse == "Détective"
-        assert hero.getcompetence == {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
+        assert hero.get_nom == "Oudini"
+        assert hero.get_classe == "Mage"
+        assert hero.get_competence == {"force": 10, "charisme": 10, "intelligence": 20}
 
+    # --------------------------------------------
     def test_modif_competence_augmentation(self):
-        hero = Hero("Holmes", "Inspecteur")
-        hero.modifcompetence("force", "+", 3)
+        hero = Hero("Conan", "Guerrier", inventaireinit)
+        hero.modif_competence("force", "+", 3)
 
-        assert hero.getcompetence["force"] == 3
+        assert hero.get_competence["force"] == 23
 
     def test_modif_competence_diminution(self):
-        hero = Hero("Watson", "Commissaire")
-        hero.modifcompetence("force", "-", 1)
+        hero = Hero("Ragnar le rouge", "Barde", inventaireinit)
+        hero.modif_competence("force", "-", 1)
 
-        assert hero.getcompetence["force"] == 1  # 2 - 1 = 1
+        assert hero.get_competence["force"] == 9  # 10 - 1 = 9
 
     def test_modif_competence_ne_descend_pas_sous_zero(self):
-        hero = Hero("Lestrade", "Inspecteur")
-        hero.modifcompetence("force", "-", 10)
+        hero = Hero("Samurai Jack", "Guerrier", inventaireinit)
+        hero.modif_competence("force", "-", 25)
 
-        assert hero.getcompetence["force"] == 0  # Ne peut pas être négatif
-
-
+        assert hero.get_competence["force"] == 0  # Ne peut pas être négatif
+#--------------------------------------------
 class TestChoixClasseHero:
-    @patch('classes.hero.input', return_value='a')
-    def test_choix_classe_inspecteur(self, mock_input):
+    @patch('script.classes.hero.input', return_value='a')
+    def test_choix_classe_guerrier(self, mock_input):
         classe = choixclassehero()
-        assert classe == "Inspecteur"
+        assert classe == "Guerrier"
 
-    @patch('classes.hero.input', return_value='b')
-    def test_choix_classe_commissaire(self, mock_input):
+    @patch('script.classes.hero.input', return_value='b')
+    def test_choix_classe_barde(self, mock_input):
         classe = choixclassehero()
-        assert classe == "Commissaire"
+        assert classe == "Barde"
 
-    @patch('classes.hero.input', return_value='c')
+    @patch('script.classes.hero.input', return_value='c')
     def test_choix_classe_detective(self, mock_input):
         classe = choixclassehero()
-        assert classe == "Détective"
+        assert classe == "Mage"
 
-    @patch('classes.hero.input', side_effect=['z', 'a'])
+    @patch('script.classes.hero.input', side_effect=['z', 'a'])
     def test_choix_classe_invalide_puis_valide(self, mock_input):
-        """Test qu'un choix invalide redemande jusqu'à obtenir un choix valide"""
+        """
+        Scénario :
+        1. L'utilisateur tape 'z' (invalide)
+        2. L'utilisateur tape 'a' (valide)
+        call_count vérifie qu'il y a bien eu 2 tests
+        """
         classe = choixclassehero()
-        assert classe == "Inspecteur"
+        assert classe == "Guerrier"
         assert mock_input.call_count == 2  # Appelé 2 fois
 
 
 class TestCreationHero:
-    @patch('classes.hero.input', return_value='Columbo')
-    @patch('classes.hero.choixclassehero', return_value='Détective')
+    """
+    test qui crée plusieurs hero
+    """
+    @patch('script.classes.hero.input', return_value='Merlin')
+    @patch('script.classes.hero.choixclassehero', return_value='Mage')
     def test_creation_hero_fonction(self, mock_choix, mock_input):
-        nomhero.clear()  # Nettoyer avant le test
+        nomhero.clear()  #enlève tous les héros cré précédemment
 
         hero = creationhero()
 
-        assert hero.nom == "Columbo"
-        assert hero.classe == "Détective"
-        assert "Columbo" in nomhero
-        assert nomhero["Columbo"] == hero
+        assert hero.get_nom == "Merlin"
+        assert hero.get_classe == "Mage"
+        assert "Merlin" in nomhero
+        assert nomhero["Merlin"] == hero
 
-    @patch('classes.hero.input', return_value='Morse')
-    @patch('classes.hero.choixclassehero', return_value='Inspecteur')
+    @patch('script.classes.hero.input', return_value='Lancelot')
+    @patch('script.classes.hero.choixclassehero', return_value='Guerrier')
     def test_creation_hero_retour_instance(self, mock_choix, mock_input):
-        nomhero.clear()
+        nomhero.clear() #enlève tous les héros cré précédemment
 
         hero = creationhero()
-
         assert isinstance(hero, Hero)
         assert len(nomhero) == 1

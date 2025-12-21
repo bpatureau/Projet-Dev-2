@@ -1,10 +1,13 @@
+from .inventaire import Inventaire
+
 #Ensemble des variables globales
-listeClasse = ["Inspecteur", "Commissaire", "Détective"]
+listeClasse = ["Guerrier", "Barde", "Mage"]
 nomhero = {}
+inventaireinit = Inventaire()
 #--------------------------------------------
-# Fonction de choix de classe de départ de l'instance de Hero, qui influence les compétences de départ
+# Fonction de choix de classe de dÃ©part de l'instance de Hero, qui influence les compÃ©tences de dÃ©part
 def choixclassehero():
-    choix = input("Entrez votre choix parmi Inspecteur (a), Commissaire (b) et Détective (c): ")
+    choix = input("Entrez votre choix parmi Guerrier (a), Barde (b) et Mage (c): ")
     if choix == "a":
         return listeClasse[0]
     elif choix == "b":
@@ -14,11 +17,13 @@ def choixclassehero():
     else:
         return choixclassehero()
 # --------------------------------------------
-# Fonction de création de perso Hero par un input pour le nom du hero
+# Fonction de crÃ©ation de perso Hero par un input pour le nom du hero
 def creationhero():
     nom = input("Entrez votre nom: ")
+    if not nom:
+        nom = "Aventurier"
     classe = choixclassehero()
-    nomhero[nom] = Hero(nom, classe)
+    nomhero[nom] = Hero(nom, classe, inventaireinit)
     return nomhero[nom]
 #--------------------------------------------
 class Hero:
@@ -26,53 +31,65 @@ class Hero:
     Personage
             type : class
             description :
-                Crée un nouveau personage en choisissant un nom et une classe de personnage.
+                CrÃ©e un nouveau personage en choisissant un nom et une classe de personnage.
             Variable :
                 - nom
-                - competence (force, charisme, intelligence et agilité), en fonction de la classe
+                - competence (force, charisme, intelligence et agilitÃ©), en fonction de la classe
                 - inventaire
     """
-    def __init__(self, nominit :str , classeinit : str ):
+    def __init__(self, nominit :str , classeinit : str, inventaireinit):
         self._nom = nominit
         self._classe = classeinit
-        if classeinit == 'Inspecteur':
-            self._competence = {"force": 0, "charisme": 1, "intelligence": 2, "agilité": 1}
-        elif classeinit == 'Commissaire':
-            self._competence = {"force": 2, "charisme": 1, "intelligence": 0, "agilité": 1}
-        else:  # Détective
-            self._competence = {"force": 0, "charisme": 2, "intelligence": 2, "agilité": 0}
+        if classeinit == 'Guerrier':
+            self._competence = {"force": 20, "charisme": 10, "intelligence": 10}
+        elif classeinit == 'Barde':
+            self._competence = {"force": 10, "charisme": 20, "intelligence": 10}
+        else:  # Mage
+            self._competence = {"force": 10, "charisme": 10, "intelligence": 20}
 
-        #self.inventaire = appel inventaire.py et lier à instance d'inventaire
+        self.inventaire = inventaireinit
 
-    @property
-    def getnom(self):
+    @property #getter
+    def get_nom(self):
         return self._nom
-    @property
-    def getcompetence(self):
+    @property #getter
+    def get_competence(self):
         return self._competence
-    @property
-    def getclasse(self):
+    @property #getter
+    def get_classe(self):
         return self._classe
+    @property #getter
+    def get_inventaire(self):
+        return self.inventaire
+    @get_competence.setter
+    def get_competence(self, competence):
+        self._competence = competence
+# --------------------------------------------
+    def afficher_info(self):
+        info = f"\n{'=' * 50}\n"
+        info += f"HÉROS: {self._nom}\n"
+        info += f"{'=' * 50}\n"
+        info += f"Classe: {self._classe}\n | "
+        info += f"Force: {self._competence['force']} | "
+        info += f"Intelligence: {self._competence['intelligence']} | "
+        info += f"Charisme: {self._competence['charisme']}\n"
+        info += f"Argent: {self.inventaire.or_} | Objets: {len(self.inventaire.loot)}\n"
+        info += f"{'=' * 50}\n"
+        return info
 
-    def __str__(self):
-        return (f"nom : {self._nom} classe : {self._classe} \n"
-                f"force : {self._competence['force']} \n"
-                f"charisme : {self._competence['charisme']} \n"
-                f"intelligence : {self._competence['intelligence']} \n"
-                f"agilité : {self._competence['agilité']}")
-
-    def modifcompetence(self, competence, signe, nbr):
+    def modif_competence(self, competence, signe, nbr):
         """
         Fonction de modification de competence de personnage en donnant le nom du personnage
             nom : str # le nom de l'instance
-            competence : str # le nom de la compétence à modifier
+            competence : str # le nom de la compÃ©tence Ã  modifier
             signe : bollean # augmenter ("+") ou diminuer ("-") une competence
             nbr : int # de combien augmenter/diminuer
         """
         if competence not in self._competence:
-            print(f"Erreur : La compétence '{competence}' n'existe pas.")
+            print(f"Erreur : La compÃ©tence '{competence}' n'existe pas.")
             return
         if signe == "+":
             self._competence[competence] += nbr
         else: #max(0, résultat)-> le plus grand des deux est prix entre 0 et le résultat du calcul, donc 0 est le min
             self._competence[competence] = max(0, self._competence[competence] - nbr)
+#--------------------------------------------
