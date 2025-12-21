@@ -26,6 +26,19 @@ class ListeDeChoix:
     """Classe représentant un node de l'histoire avec ses choix"""
     
     def __init__(self, id_node, description):
+        """
+        Crée un nouveau node de l'histoire.
+        
+        Préconditions:
+            - id_node ne doit pas être vide
+            - id_node ne doit pas contenir d'espaces, quotes ou backslashes
+            - description doit être de type str
+        
+        Postconditions:
+            - self.id contient l'id du node
+            - self.__description contient la description
+            - self.propositions est une liste vide
+        """
         if not id_node:
             raise ValueError("L'id_node ne peut pas être vide")
         if re.search(r'[\s\'"\\]', str(id_node)):
@@ -37,11 +50,21 @@ class ListeDeChoix:
         self.__description = description
         self.propositions = []
     
-    def ajouter_proposition(self, texte: str, consequence: str, 
-                           suivant = None, 
-                           prerequis = None,
-                           defaite = False):
-        """Ajoute une proposition de choix"""
+    def ajouter_proposition(self, texte: str, consequence: str, suivant = None, prerequis = None, defaite = False):
+        """
+        Ajoute une proposition de choix au node.
+        
+        Préconditions:
+            - texte doit être une chaîne non vide
+            - consequence doit être une chaîne non vide
+            - defaite doit être un booléen
+            - prerequis doit être None ou un dictionnaire
+        
+        Postconditions:
+            - Une nouvelle proposition est ajoutée à self.propositions
+            - La proposition contient : texte, prerequis, consequence, suivant, defaite
+            - len(self.propositions) a augmenté de 1
+        """
         if not texte or not isinstance(texte, str):
             raise PropositionInvalideError("texte", texte, type_attendu="str non vide")
         if not consequence or not isinstance(consequence, str):
