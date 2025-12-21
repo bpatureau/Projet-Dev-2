@@ -1,4 +1,27 @@
 import re
+
+
+class PrerequisInvalideError(Exception):
+    """Exception pour un prérequis invalide"""
+    pass
+
+class PropositionInvalideError(Exception):
+    """Exception pour une proposition mal construite"""
+    
+    def __init__(self, champ, valeur_recue, type_attendu="str"):
+        self.champ = champ
+        self.valeur_recue = valeur_recue
+        self.type_attendu = type_attendu
+        self.type_recu = type(valeur_recue).__name__
+        
+        # Message dynamique généré automatiquement
+        message = (
+            f"Erreur sur le champ '{champ}' : "
+            f"type {self.type_recu} reçu, {type_attendu} attendu. "
+            f"Valeur : {repr(valeur_recue)}"
+        )
+        super().__init__(message)
+
 class ListeDeChoix:
     """Classe représentant un node de l'histoire avec ses choix"""
     
@@ -20,11 +43,11 @@ class ListeDeChoix:
                            defaite = False):
         """Ajoute une proposition de choix"""
         if not texte or not isinstance(texte, str):
-            raise ValueError("Le texte de la proposition doit être une chaîne non vide")
+            raise PropositionInvalideError("texte", texte, type_attendu="str non vide")
         if not consequence or not isinstance(consequence, str):
-            raise ValueError("La conséquence doit être une chaîne non vide")
+            raise PropositionInvalideError("consequence", consequence, type_attendu="str non vide")
         if not isinstance(defaite, bool):
-            raise ValueError("Le paramètre 'defaite' doit être un booléen")
+            raise PropositionInvalideError("défaite", defaite, type_attendu="bool")
         
         proposition = {
             "texte": texte,
@@ -56,9 +79,9 @@ class ListeDeChoix:
             return True
         
         if not isinstance(prerequis, dict):
-            raise ValueError("Les prerequis doivent être un dictionnaire")
+            raise PrerequisInvalideError("Les prerequis doivent être un dictionnaire")
         
-        try:
+        try:    
             # Vérifier objet requis
             if "objet" in prerequis:
                 if not hero.inventaire.contient(prerequis["objet"]):
